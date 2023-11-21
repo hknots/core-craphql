@@ -18,10 +18,10 @@ configurations {
 }
 
 repositories {
-    mavenCentral()
     maven {
         url "https://repo.fintlabs.no/releases"
     }
+    mavenCentral()
 }
 
 dependencies {
