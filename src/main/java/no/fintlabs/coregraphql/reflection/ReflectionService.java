@@ -14,11 +14,11 @@ import java.util.Set;
 @Slf4j
 public class ReflectionService {
 
-    private final Map<String, Set<Class<?>>> classMap;
+    private final Map<String, Set<Class<?>>> packageClassMap;
 
     public ReflectionService() {
-        this.classMap = getFintMainObjects();
-        classMap.forEach((className, clazz) -> log.info(className + " " + clazz));
+        this.packageClassMap = getFintMainObjects();
+        packageClassMap.forEach((className, clazz) -> log.info(className + " " + clazz));
     }
 
     public Map<String, Set<Class<?>>> getFintMainObjects() {
