@@ -19,11 +19,22 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://repo.fintlabs.no/releases"
+    }
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation("no.fint:fint-utdanning-model-java:${apiVersion}")
+    implementation("no.fint:fint-administrasjon-model-java:${apiVersion}")
+    implementation("no.fint:fint-personvern-model-java:${apiVersion}")
+    implementation("no.fint:fint-okonomi-model-java:${apiVersion}")
+
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:15.0.0'
+    implementation 'org.reflections:reflections:0.10.2'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
