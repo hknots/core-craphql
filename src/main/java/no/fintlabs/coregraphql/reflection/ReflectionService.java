@@ -11,16 +11,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@Getter
 @Service
 @Slf4j
 public class ReflectionService {
 
-    @Getter
     private final Map<String, Set<Class<?>>> packageClassMap;
 
     public ReflectionService() {
         this.packageClassMap = getFintMainObjects();
-        packageClassMap.forEach((className, clazz) -> log.info(className + " " + clazz));
     }
 
     private Map<String, Set<Class<?>>> getFintMainObjects() {
