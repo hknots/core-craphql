@@ -1,5 +1,6 @@
 package no.fintlabs.coregraphql.reflection;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import no.fint.model.FintMainObject;
 import org.reflections.Reflections;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Slf4j
 public class ReflectionService {
 
+    @Getter
     private final Map<String, Set<Class<?>>> packageClassMap;
 
     public ReflectionService() {
@@ -21,7 +23,7 @@ public class ReflectionService {
         packageClassMap.forEach((className, clazz) -> log.info(className + " " + clazz));
     }
 
-    public Map<String, Set<Class<?>>> getFintMainObjects() {
+    private Map<String, Set<Class<?>>> getFintMainObjects() {
         Reflections reflections = new Reflections("no.fint.model");
         Set<Class<? extends FintMainObject>> fintMainObjects = reflections.getSubTypesOf(FintMainObject.class);
 
