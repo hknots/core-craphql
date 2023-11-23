@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -20,10 +19,10 @@ public class GraphQLConfig {
 
     @Bean
     public List<GraphQLFieldDefinition> graphQLSchemaBeanDefinitions() {
-        return reflectionService.getPackageClassMap().values().stream()
-                .flatMap(Set::stream)
-                .map(clazz -> GraphQLFieldDefinition.newFieldDefinition()
-                        .name(clazz.getSimpleName())
+        return reflectionService.getPackageToFintClassesMap().values().stream()
+                .flatMap(List::stream)
+                .map(fintClass -> GraphQLFieldDefinition.newFieldDefinition()
+                        .name(fintClass.getClazzSimpleName())
                         .type(Scalars.GraphQLString)
                         .build())
                 .collect(Collectors.toList());
