@@ -4,11 +4,14 @@ import graphql.GraphQL;
 import graphql.Scalars;
 import graphql.schema.*;
 import lombok.RequiredArgsConstructor;
+import no.fintlabs.coregraphql.reflection.FintClass;
 import no.fintlabs.coregraphql.reflection.ReflectionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -18,47 +21,68 @@ public class GraphQLConfig {
     private final ReflectionService reflectionService;
 
     @Bean
-    public List<GraphQLFieldDefinition> graphQLSchemaBeanDefinitions() {
-        return reflectionService.getPackageToFintClassesMap().values().stream()
-                .flatMap(List::stream)
-                .map(fintClass -> GraphQLFieldDefinition.newFieldDefinition()
-                        .name(fintClass.getClazzSimpleName())
-                        .type(Scalars.GraphQLString)
-                        .build())
-                .collect(Collectors.toList());
+    public GraphQLSchema graphQLSchema() {
+        GraphQLObjectType queryType = buildQueryType();
+        GraphQLCodeRegistry codeRegistry = buildCodeRegistry(queryType);
+
+        return GraphQLSchema.newSchema()
+                .query(queryType)
+                .codeRegistry(codeRegistry)
+                .build();
     }
 
-    @Bean
-    public GraphQLCodeRegistry graphQLCodeRegistry(List<GraphQLFieldDefinition> graphQLSchemaBeanDefinitions) {
+    private GraphQLObjectType buildQueryType() {
+        List<GraphQLFieldDefinition> fieldDefinitions = reflectionService.getPackageToFintClassesMap().values().stream()
+                .flatMap(List::stream)
+                .map(this::buildFieldDefinition)
+                .collect(Collectors.toList());
+
+        return GraphQLObjectType.newObject()
+                .name("Query")
+                .fields(fieldDefinitions)
+                .build();
+    }
+
+    private GraphQLFieldDefinition buildFieldDefinition(FintClass fintClass) {
+        GraphQLObjectType.Builder objectTypeBuilder = GraphQLObjectType.newObject()
+                .name(fintClass.getClazz().getSimpleName());
+
+        // Define fields for the object type
+        // Assuming all fields are of type String for simplicity
+        fintClass.getIdentifikatorFields().forEach(field ->
+                objectTypeBuilder.field(GraphQLFieldDefinition.newFieldDefinition()
+                        .name(field)
+                        .type(Scalars.GraphQLString)
+                        .build()));
+
+        GraphQLObjectType objectType = objectTypeBuilder.build();
+
+        return GraphQLFieldDefinition.newFieldDefinition()
+                .name(fintClass.getClazz().getSimpleName().toLowerCase())
+                .argument(buildArguments(fintClass.getIdentifikatorFields()))
+                .type(objectType)
+                .build();
+    }
+
+    private List<GraphQLArgument> buildArguments(Set<String> identifikatorFields) {
+        List<GraphQLArgument> arguments = new ArrayList<>();
+        identifikatorFields.forEach(field ->
+                arguments.add(GraphQLArgument.newArgument()
+                        .name(field)
+                        .type(Scalars.GraphQLString)
+                        .build()));
+        return arguments;
+    }
+
+    private GraphQLCodeRegistry buildCodeRegistry(GraphQLObjectType queryType) {
         GraphQLCodeRegistry.Builder codeRegistryBuilder = GraphQLCodeRegistry.newCodeRegistry();
 
-        graphQLSchemaBeanDefinitions.forEach(fieldDefinition -> {
+        queryType.getFieldDefinitions().forEach(fieldDefinition -> {
             DataFetcher<?> dataFetcher = createDataFetcherForClass(fieldDefinition.getName());
-            codeRegistryBuilder.dataFetcher(FieldCoordinates.coordinates("query", fieldDefinition.getName()), dataFetcher);
+            codeRegistryBuilder.dataFetcher(FieldCoordinates.coordinates("Query", fieldDefinition.getName()), dataFetcher);
         });
 
         return codeRegistryBuilder.build();
-    }
-
-    @Bean
-    public GraphQLObjectType query(List<GraphQLFieldDefinition> graphQLSchemaBeanDefinitions) {
-        return GraphQLObjectType.newObject()
-                .name("query")
-                .fields(graphQLSchemaBeanDefinitions)
-                .build();
-    }
-
-    @Bean
-    public GraphQLSchema graphQLSchema(GraphQLObjectType queryData, GraphQLCodeRegistry graphQLCodeRegistry) {
-        return GraphQLSchema.newSchema()
-                .query(queryData)
-                .codeRegistry(graphQLCodeRegistry)
-                .build();
-    }
-
-    @Bean
-    public GraphQL graphQL(GraphQLSchema graphQLSchema) {
-        return GraphQL.newGraphQL(graphQLSchema).build();
     }
 
     private DataFetcher<?> createDataFetcherForClass(String className) {
@@ -67,4 +91,8 @@ public class GraphQLConfig {
         };
     }
 
+    @Bean
+    public GraphQL graphQL(GraphQLSchema graphQLSchema) {
+        return GraphQL.newGraphQL(graphQLSchema).build();
+    }
 }
