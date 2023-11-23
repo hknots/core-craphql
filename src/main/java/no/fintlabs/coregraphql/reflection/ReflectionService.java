@@ -17,13 +17,11 @@ import java.util.*;
 @Slf4j
 public class ReflectionService {
 
-    private final Map<String, List<FintClass>> packageToFintClassesMap;
+    private final Map<String, List<FintClass>> packageFintClassMap;
 
     public ReflectionService() {
-        this.packageToFintClassesMap = getFintMainObjects();
-        packageToFintClassesMap.forEach((packageName, fintClasses) ->
-                fintClasses.forEach(fintClass ->
-                        log.info("{}: {}", fintClass.getClazz().getSimpleName(), fintClass.getIdentifikatorFields())));
+        this.packageFintClassMap = getFintMainObjects();
+        packageFintClassMap.values().forEach(fintClasses -> fintClasses.forEach(fintClass -> log.info("{}", fintClass.getRelations())));
     }
 
     private Map<String, List<FintClass>> getFintMainObjects() {
@@ -64,25 +62,16 @@ public class ReflectionService {
 
     private List<String> getEnumRelations(Class<?> clazz) {
         List<String> relations = new ArrayList<>();
-        for (Field field : getAllFields(clazz)) {
-            if (field.getType().isEnum() || isEnumCollection(field)) {
-                relations.add(field.getName());
-            }
-        }
-        return relations;
-    }
-
-    private boolean isEnumCollection(Field field) {
-        if (Collection.class.isAssignableFrom(field.getType())) {
-            Type genericType = field.getGenericType();
-            if (genericType instanceof ParameterizedType) {
-                Type[] actualTypeArguments = ((ParameterizedType) genericType).getActualTypeArguments();
-                if (actualTypeArguments.length == 1 && ((Class<?>) actualTypeArguments[0]).isEnum()) {
-                    return true;
+        Class<?>[] declaredClasses = clazz.getDeclaredClasses();
+        for (Class<?> innerClass : declaredClasses) {
+            if (innerClass.isEnum()) {
+                Object[] enumConstants = innerClass.getEnumConstants();
+                for (Object enumConstant : enumConstants) {
+                    relations.add(enumConstant.toString());
                 }
             }
         }
-        return false;
+        return relations;
     }
 
     private Set<String> getIdentifikatorFields(Class<?> clazz) {
