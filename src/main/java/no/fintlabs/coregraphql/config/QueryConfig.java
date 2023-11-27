@@ -1,8 +1,9 @@
 package no.fintlabs.coregraphql.config;
 
-import graphql.GraphQL;
 import graphql.Scalars;
-import graphql.schema.*;
+import graphql.schema.GraphQLArgument;
+import graphql.schema.GraphQLFieldDefinition;
+import graphql.schema.GraphQLObjectType;
 import lombok.RequiredArgsConstructor;
 import no.fintlabs.coregraphql.reflection.FintClass;
 import no.fintlabs.coregraphql.reflection.ReflectionService;
@@ -16,22 +17,12 @@ import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
-public class GraphQLConfig {
+public class QueryConfig {
 
     private final ReflectionService reflectionService;
 
     @Bean
-    public GraphQLSchema graphQLSchema() {
-        GraphQLObjectType queryType = buildQueryType();
-        GraphQLCodeRegistry codeRegistry = buildCodeRegistry(queryType);
-
-        return GraphQLSchema.newSchema()
-                .query(queryType)
-                .codeRegistry(codeRegistry)
-                .build();
-    }
-
-    private GraphQLObjectType buildQueryType() {
+    public GraphQLObjectType buildQueryType() {
         List<GraphQLFieldDefinition> fieldDefinitions = reflectionService.getFintClasses().values().stream()
                 .map(this::buildFieldDefinition)
                 .collect(Collectors.toList());
@@ -58,7 +49,7 @@ public class GraphQLConfig {
 
         return GraphQLFieldDefinition.newFieldDefinition()
                 .name(fintClass.getClazz().getSimpleName().toLowerCase())
-                .argument(buildArguments(fintClass.getIdentifikatorFields()))
+                .arguments(buildArguments(fintClass.getIdentifikatorFields()))
                 .type(objectType)
                 .build();
     }
@@ -73,25 +64,4 @@ public class GraphQLConfig {
         return arguments;
     }
 
-    private GraphQLCodeRegistry buildCodeRegistry(GraphQLObjectType queryType) {
-        GraphQLCodeRegistry.Builder codeRegistryBuilder = GraphQLCodeRegistry.newCodeRegistry();
-
-        queryType.getFieldDefinitions().forEach(fieldDefinition -> {
-            DataFetcher<?> dataFetcher = createDataFetcherForClass(fieldDefinition.getName());
-            codeRegistryBuilder.dataFetcher(FieldCoordinates.coordinates("Query", fieldDefinition.getName()), dataFetcher);
-        });
-
-        return codeRegistryBuilder.build();
-    }
-
-    private DataFetcher<?> createDataFetcherForClass(String className) {
-        return environment -> {
-            return "Data for " + className;
-        };
-    }
-
-    @Bean
-    public GraphQL graphQL(GraphQLSchema graphQLSchema) {
-        return GraphQL.newGraphQL(graphQLSchema).build();
-    }
 }
