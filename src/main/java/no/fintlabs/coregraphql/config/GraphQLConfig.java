@@ -32,7 +32,7 @@ public class GraphQLConfig {
     }
 
     private GraphQLObjectType buildQueryType() {
-        List<GraphQLFieldDefinition> fieldDefinitions = reflectionService.getFintClasses().stream()
+        List<GraphQLFieldDefinition> fieldDefinitions = reflectionService.getFintClasses().values().stream()
                 .map(this::buildFieldDefinition)
                 .collect(Collectors.toList());
 

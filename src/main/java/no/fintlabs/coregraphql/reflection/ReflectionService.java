@@ -15,23 +15,22 @@ import java.util.*;
 @Slf4j
 public class ReflectionService {
 
-    private final List<FintClass> fintClasses = getFintMainObjects();
+    private final Map<String, FintClass> fintClasses = getFintMainObjects();
 
-    private List<FintClass> getFintMainObjects() {
+    private Map<String, FintClass> getFintMainObjects() {
         Reflections reflections = new Reflections("no.fint.model");
         Set<Class<? extends FintMainObject>> fintMainObjects = reflections.getSubTypesOf(FintMainObject.class);
 
-        List<FintClass> fintClasses = new ArrayList<>();
+        Map<String, FintClass> fintClasses = new HashMap<>();
 
         for (Class<?> clazz : fintMainObjects) {
-            fintClasses.add(FintClass.builder()
+            fintClasses.put(clazz.getSimpleName(), FintClass.builder()
                     .clazz(clazz)
                     .fields(getAllFields(clazz))
                     .relations(getEnumRelations(clazz))
                     .identifikatorFields(getIdentifikatorFields(clazz))
                     .packageName(clazz.getPackage().getName())
-                    .build()
-            );
+                    .build());
         }
         return fintClasses;
     }
