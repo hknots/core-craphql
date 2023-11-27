@@ -15,6 +15,7 @@ public class FintClass {
     private List<Field> fields;
     private List<String> relations;
     private Set<String> identifikatorFields;
+    private String packageName;
 
     public String getClazzSimpleName() {
         return clazz.getSimpleName();
