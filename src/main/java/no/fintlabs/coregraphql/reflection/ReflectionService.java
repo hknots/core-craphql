@@ -1,7 +1,9 @@
 package no.fintlabs.coregraphql.reflection;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import no.fint.model.FintComplexDatatypeObject;
 import no.fint.model.FintMainObject;
 import no.fint.model.felles.kompleksedatatyper.Identifikator;
 import org.reflections.Reflections;
@@ -15,16 +17,39 @@ import java.util.*;
 @Slf4j
 public class ReflectionService {
 
-    private final Map<String, FintClass> fintClasses = getFintMainObjects();
+    private final Map<String, fintMainObject> fintMainObjects = createFintMainObjects();
+    private final Map<String, fintComplexObject> fintComplexObjects = createFintComplexDataTypes();
 
-    private Map<String, FintClass> getFintMainObjects() {
+    @PostConstruct
+    public void init() {
+        fintMainObjects.forEach((key, value) -> log.info("Found FintMainObject: {}", key));
+        fintComplexObjects.forEach((key, value) -> log.info("Found FintComplexDataType: {}", key));
+    }
+
+    private Map<String, fintComplexObject> createFintComplexDataTypes() {
+        Reflections reflections = new Reflections("no.fint.model");
+        Set<Class<? extends FintComplexDatatypeObject>> fintComplexTypes = reflections.getSubTypesOf(FintComplexDatatypeObject.class);
+
+        Map<String, fintComplexObject> fintComplexObjects = new HashMap<>();
+
+        for (Class<?> clazz : fintComplexTypes) {
+            fintComplexObjects.put(clazz.getSimpleName(), fintComplexObject.builder()
+                    .clazz(clazz)
+                    .fields(getAllFields(clazz))
+                    .packageName(clazz.getPackage().getName())
+                    .build());
+        }
+        return fintComplexObjects;
+    }
+
+    private Map<String, fintMainObject> createFintMainObjects() {
         Reflections reflections = new Reflections("no.fint.model");
         Set<Class<? extends FintMainObject>> fintMainObjects = reflections.getSubTypesOf(FintMainObject.class);
 
-        Map<String, FintClass> fintClasses = new HashMap<>();
+        Map<String, fintMainObject> fintClasses = new HashMap<>();
 
         for (Class<?> clazz : fintMainObjects) {
-            fintClasses.put(clazz.getSimpleName(), FintClass.builder()
+            fintClasses.put(clazz.getSimpleName(), fintMainObject.builder()
                     .clazz(clazz)
                     .fields(getAllFields(clazz))
                     .relations(getEnumRelations(clazz))
