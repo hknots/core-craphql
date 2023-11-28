@@ -31,6 +31,7 @@ public class ReflectionService {
             fintComplexObjects.put(clazz.getSimpleName(), FintComplexObject.builder()
                     .clazz(clazz)
                     .fields(getAllFields(clazz))
+                    .relations(getEnumRelations(clazz))
                     .packageName(clazz.getPackage().getName())
                     .build());
         }

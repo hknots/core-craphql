@@ -12,7 +12,9 @@ public abstract class FintObject {
 
     private Class<?> clazz;
     private List<Field> fields;
+    private List<String> relations;
     private String packageName;
+
 
     public String getClazzSimpleName() {
         return clazz.getSimpleName();
