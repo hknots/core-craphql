@@ -21,12 +21,6 @@ public class ReflectionService {
     private final Map<String, FintMainObject> fintMainObjects = createFintMainObjects();
     private final Map<String, FintComplexObject> fintComplexObjects = createFintComplexDataTypes();
 
-    @PostConstruct
-    public void init() {
-        fintMainObjects.forEach((key, value) -> log.info("Found FintMainObject: {}", key));
-        fintComplexObjects.forEach((key, value) -> log.info("Found FintComplexDataType: {}", key));
-    }
-
     private Map<String, FintComplexObject> createFintComplexDataTypes() {
         Reflections reflections = new Reflections("no.fint.model");
         Set<Class<? extends FintComplexDatatypeObject>> fintComplexTypes = reflections.getSubTypesOf(FintComplexDatatypeObject.class);
