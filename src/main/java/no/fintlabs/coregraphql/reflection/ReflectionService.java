@@ -4,8 +4,9 @@ import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import no.fint.model.FintComplexDatatypeObject;
-import no.fint.model.FintMainObject;
 import no.fint.model.felles.kompleksedatatyper.Identifikator;
+import no.fintlabs.coregraphql.reflection.model.FintComplexObject;
+import no.fintlabs.coregraphql.reflection.model.FintMainObject;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,8 @@ import java.util.*;
 @Slf4j
 public class ReflectionService {
 
-    private final Map<String, fintMainObject> fintMainObjects = createFintMainObjects();
-    private final Map<String, fintComplexObject> fintComplexObjects = createFintComplexDataTypes();
+    private final Map<String, FintMainObject> fintMainObjects = createFintMainObjects();
+    private final Map<String, FintComplexObject> fintComplexObjects = createFintComplexDataTypes();
 
     @PostConstruct
     public void init() {
@@ -26,14 +27,14 @@ public class ReflectionService {
         fintComplexObjects.forEach((key, value) -> log.info("Found FintComplexDataType: {}", key));
     }
 
-    private Map<String, fintComplexObject> createFintComplexDataTypes() {
+    private Map<String, FintComplexObject> createFintComplexDataTypes() {
         Reflections reflections = new Reflections("no.fint.model");
         Set<Class<? extends FintComplexDatatypeObject>> fintComplexTypes = reflections.getSubTypesOf(FintComplexDatatypeObject.class);
 
-        Map<String, fintComplexObject> fintComplexObjects = new HashMap<>();
+        Map<String, FintComplexObject> fintComplexObjects = new HashMap<>();
 
         for (Class<?> clazz : fintComplexTypes) {
-            fintComplexObjects.put(clazz.getSimpleName(), fintComplexObject.builder()
+            fintComplexObjects.put(clazz.getSimpleName(), FintComplexObject.builder()
                     .clazz(clazz)
                     .fields(getAllFields(clazz))
                     .packageName(clazz.getPackage().getName())
@@ -42,14 +43,14 @@ public class ReflectionService {
         return fintComplexObjects;
     }
 
-    private Map<String, fintMainObject> createFintMainObjects() {
+    private Map<String, FintMainObject> createFintMainObjects() {
         Reflections reflections = new Reflections("no.fint.model");
-        Set<Class<? extends FintMainObject>> fintMainObjects = reflections.getSubTypesOf(FintMainObject.class);
+        Set<Class<? extends no.fint.model.FintMainObject>> fintMainObjects = reflections.getSubTypesOf(no.fint.model.FintMainObject.class);
 
-        Map<String, fintMainObject> fintClasses = new HashMap<>();
+        Map<String, FintMainObject> fintClasses = new HashMap<>();
 
         for (Class<?> clazz : fintMainObjects) {
-            fintClasses.put(clazz.getSimpleName(), fintMainObject.builder()
+            fintClasses.put(clazz.getSimpleName(), FintMainObject.builder()
                     .clazz(clazz)
                     .fields(getAllFields(clazz))
                     .relations(getEnumRelations(clazz))

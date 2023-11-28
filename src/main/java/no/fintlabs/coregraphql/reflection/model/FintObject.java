@@ -1,14 +1,14 @@
-package no.fintlabs.coregraphql.reflection;
+package no.fintlabs.coregraphql.reflection.model;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
+@SuperBuilder
 @Data
-@Builder
-public class fintComplexObject {
+public abstract class FintObject {
 
     private Class<?> clazz;
     private List<Field> fields;
