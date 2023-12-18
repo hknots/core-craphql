@@ -6,8 +6,8 @@ import graphql.schema.GraphQLFieldDefinition;
 import graphql.schema.GraphQLObjectType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import no.fintlabs.coregraphql.reflection.model.FintMainObject;
 import no.fintlabs.coregraphql.reflection.ReflectionService;
+import no.fintlabs.coregraphql.reflection.model.FintMainObject;
 import no.fintlabs.coregraphql.reflection.model.FintObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,15 +24,18 @@ public class QueryConfig {
     private final ReflectionService reflectionService;
 
     @Bean
-    public GraphQLObjectType buildQueryType() {
-        List<GraphQLFieldDefinition> fieldDefinitions = reflectionService.getFintMainObjects().values().stream()
-                .map(this::buildFieldDefinition)
-                .collect(Collectors.toList());
-
+    public GraphQLObjectType buildQueryType(List<GraphQLFieldDefinition> fieldDefinitions) {
         return GraphQLObjectType.newObject()
                 .name("Query")
                 .fields(fieldDefinitions)
                 .build();
+    }
+
+    @Bean
+    public List<GraphQLFieldDefinition> fieldDefinitions() {
+        return reflectionService.getFintMainObjects().values().stream()
+                .map(this::buildFieldDefinition)
+                .collect(Collectors.toList());
     }
 
     private GraphQLFieldDefinition buildFieldDefinition(FintMainObject fintMainObject) {
