@@ -44,12 +44,12 @@ public class QueryConfig {
     }
 
     private GraphQLObjectType createObjectType(FintObject fintObject) {
-        if (typeIsProcessed(fintObject.getClazzSimpleName())) {
-            return procsessedTypes.get(fintObject.getClazzSimpleName());
+        if (typeIsProcessed(fintObject.getSimpleName())) {
+            return procsessedTypes.get(fintObject.getSimpleName());
         }
-        log.info("Creating object: {}", fintObject.getClazzSimpleName());
+        log.info("Creating object: {}", fintObject.getSimpleName());
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
-                .name(fintObject.getClazzSimpleName());
+                .name(fintObject.getSimpleName());
 
         fintObject.getFields().forEach(field -> {
             GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
@@ -69,7 +69,7 @@ public class QueryConfig {
             log.info("Type: {} - {} is created", field.getType().getSimpleName(), field.getName());
         });
         GraphQLObjectType build = objectBuilder.build();
-        procsessedTypes.put(fintObject.getClazzSimpleName(), build);
+        procsessedTypes.put(fintObject.getSimpleName(), build);
         return build;
 
     }
