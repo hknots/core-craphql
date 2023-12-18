@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 public abstract class FintObject {
 
-    private final String name;
+    private String uniqueName;
+    private final String packageName;
     private final String simpleName;
     private final Class<?> clazz;
     private final List<Field> fields;
@@ -18,7 +19,7 @@ public abstract class FintObject {
 
     public FintObject(Class<?> clazz) {
         this.clazz = clazz;
-        name = clazz.getName();
+        packageName = clazz.getPackage().getName();
         simpleName = clazz.getSimpleName();
         fields = getAllFields(clazz);
         relations = getAllRelations(clazz);
