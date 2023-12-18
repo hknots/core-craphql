@@ -59,27 +59,27 @@ public class QueryConfig {
     }
 
     private GraphQLObjectType createObjectType(FintObject fintObject) {
-        if (typeIsProcessed(fintObject.getName())) {
-            return procsessedTypes.get(fintObject.getName());
+        if (typeIsProcessed(fintObject.getPackageName())) {
+            return procsessedTypes.get(fintObject.getPackageName());
         }
 
         log.info("Creating object: {}", fintObject.getSimpleName());
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
-                .name(fintObject.getSimpleName());
+                .name(fintObject.getUniqueName());
 
         fintObject.getFields().forEach(field -> {
             GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
                     .name(field.getName());
 
-            if (typeIsProcessed(field.getType().getSimpleName())) {
+            if (typeIsProcessed(field.getType().getName())) {
                 log.info("Type: {} - {} has already been processed", field.getType().getSimpleName(), field.getName());
-                objectBuilder.field(fieldBuilder.type(procsessedTypes.get(field.getType().getSimpleName())).build());
+                objectBuilder.field(fieldBuilder.type(procsessedTypes.get(field.getType().getName())).build());
             } else if (typeIsFromJava(field.getType())) {
                 log.info("Type: {} - {} is from java", field.getType().getSimpleName(), field.getName());
                 objectBuilder.field(fieldBuilder.type(Scalars.GraphQLString).build());
             } else {
                 log.warn("Type {} is not processed", field.getType().getSimpleName());
-                objectBuilder.field(fieldBuilder.type(createNewType(field.getType().getSimpleName())).build());
+                objectBuilder.field(fieldBuilder.type(createNewType(field.getType().getName())).build());
             }
 
             log.info("Type: {} - {} is created", field.getType().getSimpleName(), field.getName());
