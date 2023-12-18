@@ -12,7 +12,10 @@ import no.fintlabs.coregraphql.reflection.model.FintObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -40,16 +43,26 @@ public class QueryConfig {
 
     private GraphQLFieldDefinition buildFieldDefinition(FintMainObject fintMainObject) {
         return GraphQLFieldDefinition.newFieldDefinition()
-                .name(fintMainObject.getClazz().getSimpleName().toLowerCase())
+                .name(fintMainObject.getSimpleName().toLowerCase())
                 .arguments(buildArguments(fintMainObject.getIdentifikatorFields()))
                 .type(createObjectType(fintMainObject))
                 .build();
     }
 
+    private List<GraphQLArgument> buildArguments(Set<String> identifikatorFields) {
+        return identifikatorFields.stream()
+                .map(field -> GraphQLArgument.newArgument()
+                        .name(field)
+                        .type(Scalars.GraphQLString)
+                        .build())
+                .collect(Collectors.toList());
+    }
+
     private GraphQLObjectType createObjectType(FintObject fintObject) {
-        if (typeIsProcessed(fintObject.getSimpleName())) {
-            return procsessedTypes.get(fintObject.getSimpleName());
+        if (typeIsProcessed(fintObject.getName())) {
+            return procsessedTypes.get(fintObject.getName());
         }
+
         log.info("Creating object: {}", fintObject.getSimpleName());
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
                 .name(fintObject.getSimpleName());
@@ -86,16 +99,6 @@ public class QueryConfig {
             log.error("Type {} not found", typeName);
             return null;
         }
-    }
-
-    private List<GraphQLArgument> buildArguments(Set<String> identifikatorFields) {
-        List<GraphQLArgument> arguments = new ArrayList<>();
-        identifikatorFields.forEach(field ->
-                arguments.add(GraphQLArgument.newArgument()
-                        .name(field)
-                        .type(Scalars.GraphQLString)
-                        .build()));
-        return arguments;
     }
 
     private boolean typeIsFromJava(Class<?> clazz) {
