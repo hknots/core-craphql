@@ -15,10 +15,10 @@ public class FintMainObject extends FintObject {
 
     public FintMainObject(Class<?> clazz, ReflectionService reflectionService) {
         super(clazz, reflectionService);
-        identifikatorFields = getIdentifikatorFields(clazz);
+        identifikatorFields = setIdentifikatorFields();
     }
 
-    private Set<String> getIdentifikatorFields(Class<?> clazz) {
+    private Set<String> setIdentifikatorFields() {
         Set<String> identifikatorFields = new HashSet<>();
         for (Field field : super.getFields()) {
             if (field.getType().equals(Identifikator.class)) {
