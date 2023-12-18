@@ -1,6 +1,7 @@
 package no.fintlabs.coregraphql.reflection.model;
 
 import lombok.Data;
+import no.fintlabs.coregraphql.reflection.ReflectionService;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -10,19 +11,35 @@ import java.util.List;
 @Data
 public abstract class FintObject {
 
-    private String uniqueName;
+    private final Class<?> clazz;
     private final String packageName;
     private final String simpleName;
-    private final Class<?> clazz;
+    private final String domainName;
+    private final String uniqueName;
     private final List<Field> fields;
     private final List<String> relations;
 
-    public FintObject(Class<?> clazz) {
+    public FintObject(Class<?> clazz, ReflectionService reflectionService) {
         this.clazz = clazz;
-        packageName = clazz.getPackage().getName();
+        packageName = clazz.getName();
         simpleName = clazz.getSimpleName();
+        domainName = setDomainName();
+        uniqueName = setUniqueName(reflectionService.getSimpleNameCount(simpleName) > 1);
         fields = getAllFields(clazz);
         relations = getAllRelations(clazz);
+    }
+
+    private String setDomainName() {
+        String[] split = packageName.split("\\.");
+        return split[3].substring(0, 1).toUpperCase() + split[3].substring(1);
+    }
+
+    private String setUniqueName(Boolean condition) {
+        if (condition) {
+            return domainName + simpleName;
+        } else {
+            return simpleName;
+        }
     }
 
     private List<String> getAllRelations(Class<?> clazz) {

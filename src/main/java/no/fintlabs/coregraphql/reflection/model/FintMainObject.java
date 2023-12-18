@@ -2,6 +2,7 @@ package no.fintlabs.coregraphql.reflection.model;
 
 import lombok.Getter;
 import no.fint.model.felles.kompleksedatatyper.Identifikator;
+import no.fintlabs.coregraphql.reflection.ReflectionService;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -12,8 +13,8 @@ public class FintMainObject extends FintObject {
 
     private final Set<String> identifikatorFields;
 
-    public FintMainObject(Class<?> clazz) {
-        super(clazz);
+    public FintMainObject(Class<?> clazz, ReflectionService reflectionService) {
+        super(clazz, reflectionService);
         identifikatorFields = getIdentifikatorFields(clazz);
     }
 
