@@ -25,7 +25,6 @@ public class ReflectionService {
         gatherSimpleNameCounts();
         fintMainObjects = createFintMainObjects();
         fintComplexObjects = createFintComplexObjects();
-        fintMainObjects.forEach((key, value) -> log.info("FintMainObject: {} - {}", key, value.getUniqueName()));
     }
 
     private void gatherSimpleNameCounts() {
