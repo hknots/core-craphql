@@ -63,9 +63,22 @@ public class QueryConfig {
             return procsessedTypes.get(fintObject.getPackageName());
         }
 
-        log.info("Creating object: {}", fintObject.getSimpleName());
+        log.info("Creating object: {}", fintObject.getPackageName());
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
                 .name(fintObject.getUniqueName());
+
+        fintObject.getRelations().forEach(relation -> {
+            log.info("Relation: {}", relation.packageName());
+            GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
+                    .name(relation.relationName());
+
+            if (typeIsProcessed(relation.packageName())) {
+                objectBuilder.field(fieldBuilder.type(procsessedTypes.get(relation.packageName())).build());
+            }
+            else {
+                objectBuilder.field(fieldBuilder.type(createNewType(relation.packageName())).build());
+            }
+        });
 
         fintObject.getFields().forEach(field -> {
             GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
