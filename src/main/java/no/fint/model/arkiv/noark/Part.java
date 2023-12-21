@@ -17,7 +17,7 @@ import no.fint.model.felles.kompleksedatatyper.Kontaktinformasjon;
 @ToString
 public class Part implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            PARTROLLE("no.fint.model.arkiv.noark.PartRolle", "0..1");
+            PARTROLLE("no.fint.model.arkiv.kodeverk.PartRolle", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -36,9 +36,9 @@ public class Part implements FintComplexDatatypeObject {
         }
     }
 
-    private @Valid Adresse adresse;
-    private @Valid Kontaktinformasjon kontaktinformasjon;
+    private Adresse adresse;
+    private Kontaktinformasjon kontaktinformasjon;
     private String kontaktperson;
-    @NotBlank
+    
     private String partNavn;
 }

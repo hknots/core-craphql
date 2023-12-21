@@ -19,14 +19,14 @@ import no.fint.model.felles.kompleksedatatyper.Kontaktinformasjon;
 @ToString
 public class Personalressurs implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSONALRESSURSKATEGORI("no.fint.model.administrasjon.personal.Personalressurskategori", "1"),
+            PERSONALRESSURSKATEGORI("no.fint.model.administrasjon.kodeverk.Personalressurskategori", "1"),
             ARBEIDSFORHOLD("no.fint.model.administrasjon.personal.Arbeidsforhold", "0..*"),
-            PERSON("no.fint.model.administrasjon.personal.Person", "1"),
-            STEDFORTREDER("no.fint.model.administrasjon.personal.Fullmakt", "0..*"),
-            FULLMAKT("no.fint.model.administrasjon.personal.Fullmakt", "0..*"),
-            LEDER("no.fint.model.administrasjon.personal.Organisasjonselement", "0..*"),
+            PERSON("no.fint.model.felles.Person", "1"),
+            STEDFORTREDER("no.fint.model.administrasjon.fullmakt.Fullmakt", "0..*"),
+            FULLMAKT("no.fint.model.administrasjon.fullmakt.Fullmakt", "0..*"),
+            LEDER("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "0..*"),
             PERSONALANSVAR("no.fint.model.administrasjon.personal.Arbeidsforhold", "0..*"),
-            SKOLERESSURS("no.fint.model.administrasjon.personal.Skoleressurs", "0..1");
+            SKOLERESSURS("no.fint.model.utdanning.elev.Skoleressurs", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -46,12 +46,12 @@ public class Personalressurs implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator ansattnummer;
+    private Identifikator ansattnummer;
     @NotNull
-    private @Valid Periode ansettelsesperiode;
+    private Periode ansettelsesperiode;
     private Date ansiennitet;
-    private @Valid Identifikator brukernavn;
+    private Identifikator brukernavn;
     private String jobbtittel;
-    private @Valid Kontaktinformasjon kontaktinformasjon;
-    private @Valid Identifikator systemId;
+    private Kontaktinformasjon kontaktinformasjon;
+    private Identifikator systemId;
 }

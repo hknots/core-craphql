@@ -17,11 +17,11 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Karakterhistorie implements FintMainObject {
     public enum Relasjonsnavn {
-            OPPDATERTAV("no.fint.model.utdanning.vurdering.Skoleressurs", "0..1"),
+            OPPDATERTAV("no.fint.model.utdanning.elev.Skoleressurs", "0..1"),
             OPPRINNELIGKARAKTERVERDI("no.fint.model.utdanning.vurdering.Karakterverdi", "0..1"),
-            OPPRINNELIGKARAKTERSTATUS("no.fint.model.utdanning.vurdering.Karakterstatus", "0..1"),
+            OPPRINNELIGKARAKTERSTATUS("no.fint.model.utdanning.kodeverk.Karakterstatus", "0..1"),
             KARAKTERVERDI("no.fint.model.utdanning.vurdering.Karakterverdi", "0..1"),
-            KARAKTERSTATUS("no.fint.model.utdanning.vurdering.Karakterstatus", "0..1");
+            KARAKTERSTATUS("no.fint.model.utdanning.kodeverk.Karakterstatus", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -41,7 +41,7 @@ public class Karakterhistorie implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Date endretDato;
+    private Date endretDato;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

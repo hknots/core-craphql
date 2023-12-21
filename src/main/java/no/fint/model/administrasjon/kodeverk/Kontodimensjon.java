@@ -16,7 +16,7 @@ import no.fint.model.felles.basisklasser.Begrep;
 @ToString(callSuper=true)
 public abstract class Kontodimensjon extends Begrep implements FintAbstractObject {
     public enum Relasjonsnavn {
-            FULLMAKT("no.fint.model.administrasjon.kodeverk.Fullmakt", "0..*");
+            FULLMAKT("no.fint.model.administrasjon.fullmakt.Fullmakt", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;

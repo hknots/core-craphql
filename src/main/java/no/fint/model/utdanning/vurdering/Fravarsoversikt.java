@@ -17,8 +17,8 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Fravarsoversikt implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.vurdering.Elevforhold", "1"),
-            FAG("no.fint.model.utdanning.vurdering.Fag", "1");
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "1"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -38,9 +38,9 @@ public class Fravarsoversikt implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Fravarsprosent halvar;
+    private Fravarsprosent halvar;
     @NotNull
-    private @Valid Fravarsprosent skolear;
+    private Fravarsprosent skolear;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

@@ -18,7 +18,7 @@ import no.fint.model.arkiv.noark.Skjerming;
 @ToString
 public class Korrespondansepart implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            KORRESPONDANSEPARTTYPE("no.fint.model.arkiv.noark.KorrespondansepartType", "1");
+            KORRESPONDANSEPARTTYPE("no.fint.model.arkiv.kodeverk.KorrespondansepartType", "1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -37,11 +37,11 @@ public class Korrespondansepart implements FintComplexDatatypeObject {
         }
     }
 
-    private @Valid Adresse adresse;
+    private Adresse adresse;
     private String fodselsnummer;
-    private @Valid Kontaktinformasjon kontaktinformasjon;
+    private Kontaktinformasjon kontaktinformasjon;
     private String kontaktperson;
     private String korrespondansepartNavn;
     private String organisasjonsnummer;
-    private @Valid Skjerming skjerming;
+    private Skjerming skjerming;
 }

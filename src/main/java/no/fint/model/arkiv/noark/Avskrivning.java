@@ -15,10 +15,10 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 public class Avskrivning implements FintComplexDatatypeObject {
-    @NotBlank
+    
     private String avskrevetAv;
     @NotNull
-    private @Valid Date avskrivningsdato;
-    @NotBlank
+    private Date avskrivningsdato;
+    
     private String avskrivningsmate;
 }

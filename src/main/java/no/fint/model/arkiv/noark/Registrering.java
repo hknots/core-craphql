@@ -45,20 +45,20 @@ public abstract class Registrering implements FintAbstractObject {
         }
     }
 
-    private @Valid Date arkivertDato;
+    private Date arkivertDato;
     private String beskrivelse;
-    private List<@Valid Dokumentbeskrivelse> dokumentbeskrivelse;
+    private List<Dokumentbeskrivelse> dokumentbeskrivelse;
     private List<String> forfatter;
-    private @Valid Klasse klasse;
-    private List<@Valid Korrespondansepart> korrespondansepart;
-    private List<@Valid Merknad> merknad;
+    private Klasse klasse;
+    private List<Korrespondansepart> korrespondansepart;
+    private List<Merknad> merknad;
     private List<String> nokkelord;
     private String offentligTittel;
-    private @Valid Date opprettetDato;
-    private List<@Valid Part> part;
+    private Date opprettetDato;
+    private List<Part> part;
     private List<String> referanseArkivDel;
     private String registreringsId;
-    private @Valid Skjerming skjerming;
-    @NotBlank
+    private Skjerming skjerming;
+    
     private String tittel;
 }

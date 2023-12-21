@@ -15,8 +15,8 @@ import no.fint.model.FintComplexDatatypeObject;
 @ToString
 public class Dokumentobjekt implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            FILFORMAT("no.fint.model.arkiv.noark.Format", "0..1"),
-            VARIANTFORMAT("no.fint.model.arkiv.noark.Variantformat", "1"),
+            FILFORMAT("no.fint.model.arkiv.kodeverk.Format", "0..1"),
+            VARIANTFORMAT("no.fint.model.arkiv.kodeverk.Variantformat", "1"),
             OPPRETTETAV("no.fint.model.arkiv.noark.Arkivressurs", "1"),
             REFERANSEDOKUMENTFIL("no.fint.model.arkiv.noark.Dokumentfil", "0..1");
 	

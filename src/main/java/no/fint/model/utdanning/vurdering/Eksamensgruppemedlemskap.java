@@ -16,11 +16,11 @@ import no.fint.model.utdanning.basisklasser.Gruppemedlemskap;
 @ToString(callSuper=true)
 public class Eksamensgruppemedlemskap extends Gruppemedlemskap implements FintMainObject {
     public enum Relasjonsnavn {
-            DELEGERTTIL("no.fint.model.utdanning.vurdering.Fylke", "0..1"),
-            ELEVFORHOLD("no.fint.model.utdanning.vurdering.Elevforhold", "1"),
-            FORETRUKKETSKOLE("no.fint.model.utdanning.vurdering.Skole", "0..1"),
+            DELEGERTTIL("no.fint.model.felles.kodeverk.Fylke", "0..1"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "1"),
+            FORETRUKKETSKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "0..1"),
             EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "1"),
-            NUS("no.fint.model.utdanning.vurdering.Karakterstatus", "0..1"),
+            NUS("no.fint.model.utdanning.kodeverk.Karakterstatus", "0..1"),
             FORETRUKKETSENSOR("no.fint.model.utdanning.vurdering.Sensor", "0..1");
 	
 		private final String typeName;

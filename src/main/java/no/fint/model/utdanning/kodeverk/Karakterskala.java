@@ -17,7 +17,7 @@ import no.fint.model.felles.basisklasser.Begrep;
 public class Karakterskala extends Begrep implements FintMainObject {
     public enum Relasjonsnavn {
             VIGOREFERANSE("no.fint.model.utdanning.kodeverk.Vigoreferanse", "0..1"),
-            VERDI("no.fint.model.utdanning.kodeverk.Karakterverdi", "0..*");
+            VERDI("no.fint.model.utdanning.vurdering.Karakterverdi", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;

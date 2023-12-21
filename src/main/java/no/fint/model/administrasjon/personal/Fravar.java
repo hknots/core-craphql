@@ -18,8 +18,8 @@ import no.fint.model.felles.kompleksedatatyper.Periode;
 @ToString
 public class Fravar implements FintMainObject {
     public enum Relasjonsnavn {
-            FRAVARSGRUNN("no.fint.model.administrasjon.personal.Fravarsgrunn", "0..1"),
-            FRAVARSTYPE("no.fint.model.administrasjon.personal.Fravarstype", "1"),
+            FRAVARSGRUNN("no.fint.model.administrasjon.kodeverk.Fravarsgrunn", "0..1"),
+            FRAVARSTYPE("no.fint.model.administrasjon.kodeverk.Fravarstype", "1"),
             ARBEIDSFORHOLD("no.fint.model.administrasjon.personal.Arbeidsforhold", "1..*"),
             FORTSETTELSE("no.fint.model.administrasjon.personal.Fravar", "0..1"),
             GODKJENNER("no.fint.model.administrasjon.personal.Personalressurs", "0..1"),
@@ -42,11 +42,11 @@ public class Fravar implements FintMainObject {
         }
     }
 
-    private @Valid Date godkjent;
-    private @Valid Identifikator kildesystemId;
+    private Date godkjent;
+    private Identifikator kildesystemId;
     @NotNull
-    private @Valid Periode periode;
+    private Periode periode;
     @NotNull
     private Long prosent;
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

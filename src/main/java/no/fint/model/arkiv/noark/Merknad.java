@@ -16,7 +16,7 @@ import java.util.Date;
 @ToString
 public class Merknad implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            MERKNADSTYPE("no.fint.model.arkiv.noark.Merknadstype", "1"),
+            MERKNADSTYPE("no.fint.model.arkiv.kodeverk.Merknadstype", "1"),
             MERKNADREGISTRERTAV("no.fint.model.arkiv.noark.Arkivressurs", "1");
 	
 		private final String typeName;
@@ -37,7 +37,7 @@ public class Merknad implements FintComplexDatatypeObject {
     }
 
     @NotNull
-    private @Valid Date merknadsdato;
-    @NotBlank
+    private Date merknadsdato;
+    
     private String merknadstekst;
 }

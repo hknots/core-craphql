@@ -17,9 +17,9 @@ import java.util.Date;
 @ToString
 public abstract class Fagvurdering implements FintAbstractObject {
     public enum Relasjonsnavn {
-            FAG("no.fint.model.utdanning.vurdering.Fag", "1"),
-            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.vurdering.Undervisningsgruppe", "0..1"),
-            SKOLEAR("no.fint.model.utdanning.vurdering.Skolear", "0..1"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "1"),
+            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "0..1"),
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1"),
             KARAKTER("no.fint.model.utdanning.vurdering.Karakterverdi", "0..1");
 	
 		private final String typeName;
@@ -39,10 +39,10 @@ public abstract class Fagvurdering implements FintAbstractObject {
         }
     }
 
-    @NotBlank
+    
     private String kommentar;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
     @NotNull
     private Date vurderingsdato;
 }

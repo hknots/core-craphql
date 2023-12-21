@@ -15,8 +15,8 @@ import no.fint.model.FintComplexDatatypeObject;
 @ToString
 public class Skjerming implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            SKJERMINGSHJEMMEL("no.fint.model.arkiv.noark.Skjermingshjemmel", "1"),
-            TILGANGSRESTRIKSJON("no.fint.model.arkiv.noark.Tilgangsrestriksjon", "1");
+            SKJERMINGSHJEMMEL("no.fint.model.arkiv.kodeverk.Skjermingshjemmel", "1"),
+            TILGANGSRESTRIKSJON("no.fint.model.arkiv.kodeverk.Tilgangsrestriksjon", "1");
 	
 		private final String typeName;
         private final String multiplicity;

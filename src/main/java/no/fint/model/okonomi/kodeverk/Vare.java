@@ -17,7 +17,7 @@ import no.fint.model.felles.basisklasser.Begrep;
 @ToString(callSuper=true)
 public class Vare extends Begrep implements FintMainObject {
     public enum Relasjonsnavn {
-            FAKTURAUTSTEDER("no.fint.model.okonomi.kodeverk.Fakturautsteder", "1"),
+            FAKTURAUTSTEDER("no.fint.model.okonomi.faktura.Fakturautsteder", "1"),
             MERVERDIAVGIFT("no.fint.model.okonomi.kodeverk.Merverdiavgift", "1");
 	
 		private final String typeName;
@@ -37,9 +37,9 @@ public class Vare extends Begrep implements FintMainObject {
         }
     }
 
-    @NotBlank
+    
     private String enhet;
-    private @Valid Kontostreng kontering;
+    private Kontostreng kontering;
     @NotNull
     private Long pris;
 }

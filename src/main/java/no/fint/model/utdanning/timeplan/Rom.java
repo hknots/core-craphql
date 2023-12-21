@@ -38,5 +38,5 @@ public class Rom implements FintMainObject {
 
     private String navn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

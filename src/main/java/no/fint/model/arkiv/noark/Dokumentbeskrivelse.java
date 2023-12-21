@@ -19,9 +19,9 @@ import no.fint.model.arkiv.noark.Skjerming;
 @ToString
 public class Dokumentbeskrivelse implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            DOKUMENTSTATUS("no.fint.model.arkiv.noark.DokumentStatus", "1"),
-            DOKUMENTTYPE("no.fint.model.arkiv.noark.DokumentType", "1"),
-            TILKNYTTETREGISTRERINGSOM("no.fint.model.arkiv.noark.TilknyttetRegistreringSom", "1..*"),
+            DOKUMENTSTATUS("no.fint.model.arkiv.kodeverk.DokumentStatus", "1"),
+            DOKUMENTTYPE("no.fint.model.arkiv.kodeverk.DokumentType", "1"),
+            TILKNYTTETREGISTRERINGSOM("no.fint.model.arkiv.kodeverk.TilknyttetRegistreringSom", "1..*"),
             TILKNYTTETAV("no.fint.model.arkiv.noark.Arkivressurs", "1"),
             OPPRETTETAV("no.fint.model.arkiv.noark.Arkivressurs", "1");
 	
@@ -44,13 +44,13 @@ public class Dokumentbeskrivelse implements FintComplexDatatypeObject {
 
     private String beskrivelse;
     private Long dokumentnummer;
-    private List<@Valid Dokumentobjekt> dokumentobjekt;
+    private List<Dokumentobjekt> dokumentobjekt;
     private List<String> forfatter;
-    private @Valid Date opprettetDato;
-    private List<@Valid Part> part;
+    private Date opprettetDato;
+    private List<Part> part;
     private List<String> referanseArkivdel;
-    private @Valid Skjerming skjerming;
-    private @Valid Date tilknyttetDato;
-    @NotBlank
+    private Skjerming skjerming;
+    private Date tilknyttetDato;
+    
     private String tittel;
 }

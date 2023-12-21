@@ -16,7 +16,7 @@ import no.fint.model.felles.basisklasser.Begrep;
 @ToString(callSuper=true)
 public class Karakterverdi extends Begrep implements FintMainObject {
     public enum Relasjonsnavn {
-            SKALA("no.fint.model.utdanning.vurdering.Karakterskala", "1");
+            SKALA("no.fint.model.utdanning.kodeverk.Karakterskala", "1");
 	
 		private final String typeName;
         private final String multiplicity;

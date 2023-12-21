@@ -35,8 +35,8 @@ public class Leverandorgruppe implements FintMainObject {
         }
     }
 
-    @NotBlank
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

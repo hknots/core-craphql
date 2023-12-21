@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Sensor implements FintMainObject {
     public enum Relasjonsnavn {
-            SKOLERESSURS("no.fint.model.utdanning.vurdering.Skoleressurs", "1"),
+            SKOLERESSURS("no.fint.model.utdanning.elev.Skoleressurs", "1"),
             EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "1");
 	
 		private final String typeName;
@@ -40,5 +40,5 @@ public class Sensor implements FintMainObject {
     private Boolean aktiv;
     private Integer sensornummer;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

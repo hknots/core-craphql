@@ -16,12 +16,12 @@ import no.fint.model.arkiv.noark.Saksmappe;
 @EqualsAndHashCode(callSuper=true)
 @ToString(callSuper=true)
 public class TilskuddFartoy extends Saksmappe implements FintMainObject {
-    @NotBlank
+    
     private String fartoyNavn;
-    @NotBlank
+    
     private String kallesignal;
-    @NotBlank
+    
     private String kulturminneId;
     @NotNull
-    private @Valid Identifikator soknadsnummer;
+    private Identifikator soknadsnummer;
 }

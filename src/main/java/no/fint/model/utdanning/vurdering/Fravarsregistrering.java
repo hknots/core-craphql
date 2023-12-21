@@ -17,10 +17,10 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Fravarsregistrering implements FintMainObject {
     public enum Relasjonsnavn {
-            REGISTRERTAV("no.fint.model.utdanning.vurdering.Skoleressurs", "0..1"),
-            FAGGRUPPE("no.fint.model.utdanning.vurdering.Faggruppe", "0..1"),
-            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.vurdering.Undervisningsgruppe", "1"),
-            FRAVARSTYPE("no.fint.model.utdanning.vurdering.Fravarstype", "1"),
+            REGISTRERTAV("no.fint.model.utdanning.elev.Skoleressurs", "0..1"),
+            FAGGRUPPE("no.fint.model.utdanning.timeplan.Faggruppe", "0..1"),
+            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "1"),
+            FRAVARSTYPE("no.fint.model.utdanning.kodeverk.Fravarstype", "1"),
             ELEVFRAVAR("no.fint.model.utdanning.vurdering.Elevfravar", "1");
 	
 		private final String typeName;
@@ -44,7 +44,7 @@ public class Fravarsregistrering implements FintMainObject {
     private Boolean foresPaVitnemal;
     private String kommentar;
     @NotNull
-    private @Valid Periode periode;
+    private Periode periode;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

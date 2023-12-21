@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Identitet implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSONALRESSURS("no.fint.model.ressurser.tilganger.Personalressurs", "0..1"),
+            PERSONALRESSURS("no.fint.model.administrasjon.personal.Personalressurs", "0..1"),
             RETTIGHET("no.fint.model.ressurser.tilganger.Rettighet", "0..*");
 	
 		private final String typeName;
@@ -37,5 +37,5 @@ public class Identitet implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

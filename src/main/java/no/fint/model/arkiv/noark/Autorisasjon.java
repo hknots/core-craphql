@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Autorisasjon implements FintMainObject {
     public enum Relasjonsnavn {
-            TILGANGSRESTRIKSJON("no.fint.model.arkiv.noark.Tilgangsrestriksjon", "1..*"),
+            TILGANGSRESTRIKSJON("no.fint.model.arkiv.kodeverk.Tilgangsrestriksjon", "1..*"),
             ADMINISTRATIVENHET("no.fint.model.arkiv.noark.AdministrativEnhet", "0..*"),
             ARKIVRESSURS("no.fint.model.arkiv.noark.Arkivressurs", "0..*");
 	
@@ -38,5 +38,5 @@ public class Autorisasjon implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

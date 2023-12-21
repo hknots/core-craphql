@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Anmerkninger implements FintMainObject {
     public enum Relasjonsnavn {
-            SKOLEAR("no.fint.model.utdanning.vurdering.Skolear", "0..1");
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -40,5 +40,5 @@ public class Anmerkninger implements FintMainObject {
     @NotNull
     private Integer orden;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

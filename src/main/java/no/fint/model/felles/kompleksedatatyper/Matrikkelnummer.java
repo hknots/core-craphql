@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Adresse;
 @ToString
 public class Matrikkelnummer implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            KOMMUNENUMMER("no.fint.model.felles.kompleksedatatyper.Kommune", "0..1");
+            KOMMUNENUMMER("no.fint.model.felles.kodeverk.Kommune", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -35,7 +35,7 @@ public class Matrikkelnummer implements FintComplexDatatypeObject {
         }
     }
 
-    private @Valid Adresse adresse;
+    private Adresse adresse;
     private String bruksnummer;
     private String festenummer;
     private String gardsnummer;

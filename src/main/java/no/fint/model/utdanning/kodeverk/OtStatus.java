@@ -16,6 +16,6 @@ import no.fint.model.felles.basisklasser.Begrep;
 @ToString(callSuper=true)
 public class OtStatus extends Begrep implements FintMainObject {
     private String beskrivelse;
-    @NotBlank
+    
     private String type;
 }

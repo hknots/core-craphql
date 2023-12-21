@@ -15,7 +15,7 @@ import no.fint.model.felles.kompleksedatatyper.Periode;
 @EqualsAndHashCode
 @ToString
 public class Identifikator implements FintComplexDatatypeObject {
-    private @Valid Periode gyldighetsperiode;
-    @NotBlank
+    private Periode gyldighetsperiode;
+    
     private String identifikatorverdi;
 }

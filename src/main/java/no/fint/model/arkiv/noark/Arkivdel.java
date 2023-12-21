@@ -38,7 +38,7 @@ public class Arkivdel implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator systemId;
-    @NotBlank
+    private Identifikator systemId;
+    
     private String tittel;
 }

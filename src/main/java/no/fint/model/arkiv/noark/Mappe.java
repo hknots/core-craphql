@@ -42,16 +42,16 @@ public abstract class Mappe implements FintAbstractObject {
         }
     }
 
-    private @Valid Date avsluttetDato;
+    private Date avsluttetDato;
     private String beskrivelse;
-    private List<@Valid Klasse> klasse;
-    private @Valid Identifikator mappeId;
-    private List<@Valid Merknad> merknad;
+    private List<Klasse> klasse;
+    private Identifikator mappeId;
+    private List<Merknad> merknad;
     private List<String> noekkelord;
     private String offentligTittel;
-    private @Valid Date opprettetDato;
-    private List<@Valid Part> part;
-    private @Valid Skjerming skjerming;
-    private @Valid Identifikator systemId;
+    private Date opprettetDato;
+    private List<Part> part;
+    private Skjerming skjerming;
+    private Identifikator systemId;
     private String tittel;
 }

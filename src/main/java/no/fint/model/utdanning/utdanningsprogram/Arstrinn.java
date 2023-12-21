@@ -17,7 +17,7 @@ import no.fint.model.utdanning.basisklasser.Gruppe;
 public class Arstrinn extends Gruppe implements FintMainObject {
     public enum Relasjonsnavn {
             PROGRAMOMRADE("no.fint.model.utdanning.utdanningsprogram.Programomrade", "0..*"),
-            BASISGRUPPE("no.fint.model.utdanning.utdanningsprogram.Basisgruppe", "0..*");
+            BASISGRUPPE("no.fint.model.utdanning.elev.Basisgruppe", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;

@@ -35,10 +35,10 @@ public class Klasse implements FintComplexDatatypeObject {
         }
     }
 
-    @NotBlank
+    
     private String klasseId;
     private Integer rekkefolge;
-    private @Valid Skjerming skjerming;
-    @NotBlank
+    private Skjerming skjerming;
+    
     private String tittel;
 }

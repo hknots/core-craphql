@@ -16,7 +16,7 @@ import no.fint.model.administrasjon.personal.Lonn;
 @ToString(callSuper=true)
 public class Variabellonn extends Lonn implements FintMainObject {
     public enum Relasjonsnavn {
-            LONNSART("no.fint.model.administrasjon.personal.Lonnsart", "1"),
+            LONNSART("no.fint.model.administrasjon.kodeverk.Lonnsart", "1"),
             ARBEIDSFORHOLD("no.fint.model.administrasjon.personal.Arbeidsforhold", "1");
 	
 		private final String typeName;

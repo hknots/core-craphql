@@ -15,7 +15,7 @@ import no.fint.model.FintComplexDatatypeObject;
 @ToString
 public class Adresse implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            LAND("no.fint.model.felles.kompleksedatatyper.Landkode", "0..1");
+            LAND("no.fint.model.felles.kodeverk.iso.Landkode", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;

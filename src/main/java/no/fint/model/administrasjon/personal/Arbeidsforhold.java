@@ -17,23 +17,23 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Arbeidsforhold implements FintMainObject {
     public enum Relasjonsnavn {
-            AKTIVITET("no.fint.model.administrasjon.personal.Aktivitet", "0..1"),
-            ANLEGG("no.fint.model.administrasjon.personal.Anlegg", "0..1"),
-            ANSVAR("no.fint.model.administrasjon.personal.Ansvar", "0..1"),
-            ARBEIDSFORHOLDSTYPE("no.fint.model.administrasjon.personal.Arbeidsforholdstype", "0..1"),
-            ART("no.fint.model.administrasjon.personal.Art", "0..1"),
-            DIVERSE("no.fint.model.administrasjon.personal.Diverse", "0..1"),
-            FORMAL("no.fint.model.administrasjon.personal.Formal", "0..1"),
-            FUNKSJON("no.fint.model.administrasjon.personal.Funksjon", "0..1"),
-            KONTRAKT("no.fint.model.administrasjon.personal.Kontrakt", "0..1"),
-            LOPENUMMER("no.fint.model.administrasjon.personal.Lopenummer", "0..1"),
-            OBJEKT("no.fint.model.administrasjon.personal.Objekt", "0..1"),
-            PROSJEKT("no.fint.model.administrasjon.personal.Prosjekt", "0..1"),
-            RAMME("no.fint.model.administrasjon.personal.Ramme", "0..1"),
-            STILLINGSKODE("no.fint.model.administrasjon.personal.Stillingskode", "0..1"),
-            TIMERPERUKE("no.fint.model.administrasjon.personal.Uketimetall", "0..1"),
-            ARBEIDSLOKASJON("no.fint.model.administrasjon.personal.Arbeidslokasjon", "0..1"),
-            ARBEIDSSTED("no.fint.model.administrasjon.personal.Organisasjonselement", "1"),
+            AKTIVITET("no.fint.model.administrasjon.kodeverk.Aktivitet", "0..1"),
+            ANLEGG("no.fint.model.administrasjon.kodeverk.Anlegg", "0..1"),
+            ANSVAR("no.fint.model.administrasjon.kodeverk.Ansvar", "0..1"),
+            ARBEIDSFORHOLDSTYPE("no.fint.model.administrasjon.kodeverk.Arbeidsforholdstype", "0..1"),
+            ART("no.fint.model.administrasjon.kodeverk.Art", "0..1"),
+            DIVERSE("no.fint.model.administrasjon.kodeverk.Diverse", "0..1"),
+            FORMAL("no.fint.model.administrasjon.kodeverk.Formal", "0..1"),
+            FUNKSJON("no.fint.model.administrasjon.kodeverk.Funksjon", "0..1"),
+            KONTRAKT("no.fint.model.administrasjon.kodeverk.Kontrakt", "0..1"),
+            LOPENUMMER("no.fint.model.administrasjon.kodeverk.Lopenummer", "0..1"),
+            OBJEKT("no.fint.model.administrasjon.kodeverk.Objekt", "0..1"),
+            PROSJEKT("no.fint.model.administrasjon.kodeverk.Prosjekt", "0..1"),
+            RAMME("no.fint.model.administrasjon.kodeverk.Ramme", "0..1"),
+            STILLINGSKODE("no.fint.model.administrasjon.kodeverk.Stillingskode", "0..1"),
+            TIMERPERUKE("no.fint.model.administrasjon.kodeverk.Uketimetall", "0..1"),
+            ARBEIDSLOKASJON("no.fint.model.administrasjon.organisasjon.Arbeidslokasjon", "0..1"),
+            ARBEIDSSTED("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "1"),
             PERSONALLEDER("no.fint.model.administrasjon.personal.Personalressurs", "0..1"),
             FASTLONN("no.fint.model.administrasjon.personal.Fastlonn", "0..*"),
             FASTTILLEGG("no.fint.model.administrasjon.personal.Fasttillegg", "0..*"),
@@ -41,7 +41,7 @@ public class Arbeidsforhold implements FintMainObject {
             LONN("no.fint.model.administrasjon.personal.Lonn", "0..*"),
             VARIABELLONN("no.fint.model.administrasjon.personal.Variabellonn", "0..*"),
             PERSONALRESSURS("no.fint.model.administrasjon.personal.Personalressurs", "1"),
-            UNDERVISNINGSFORHOLD("no.fint.model.administrasjon.personal.Undervisningsforhold", "0..1");
+            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -62,20 +62,20 @@ public class Arbeidsforhold implements FintMainObject {
 
     @NotNull
     private Long ansettelsesprosent;
-    private @Valid Periode arbeidsforholdsperiode;
+    private Periode arbeidsforholdsperiode;
     @NotNull
     private Long arslonn;
     @NotNull
-    private @Valid Periode gyldighetsperiode;
+    private Periode gyldighetsperiode;
     @NotNull
     private Boolean hovedstilling;
     @NotNull
     private Long lonnsprosent;
-    @NotBlank
+    
     private String stillingsnummer;
     private String stillingstittel;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
     @NotNull
     private Long tilstedeprosent;
 }

@@ -17,7 +17,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class AdministrativEnhet implements FintMainObject {
     public enum Relasjonsnavn {
-            ORGANISASJONSELEMENT("no.fint.model.arkiv.noark.Organisasjonselement", "0..1");
+            ORGANISASJONSELEMENT("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -36,9 +36,9 @@ public class AdministrativEnhet implements FintMainObject {
         }
     }
 
-    private @Valid Periode gyldighetsperiode;
-    @NotBlank
+    private Periode gyldighetsperiode;
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

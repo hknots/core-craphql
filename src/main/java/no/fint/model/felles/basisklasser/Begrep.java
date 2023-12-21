@@ -16,12 +16,12 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @EqualsAndHashCode
 @ToString
 public abstract class Begrep implements FintAbstractObject {
-    private @Valid Periode gyldighetsperiode;
-    @NotBlank
+    private Periode gyldighetsperiode;
+    
     private String kode;
-    @NotBlank
+    
     private String navn;
     private Boolean passiv;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

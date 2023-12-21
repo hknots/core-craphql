@@ -18,7 +18,7 @@ public class Ansvar extends Kontodimensjon implements FintMainObject {
     public enum Relasjonsnavn {
             OVERORDNET("no.fint.model.administrasjon.kodeverk.Ansvar", "0..1"),
             UNDERORDNET("no.fint.model.administrasjon.kodeverk.Ansvar", "0..*"),
-            ORGANISASJONSELEMENT("no.fint.model.administrasjon.kodeverk.Organisasjonselement", "0..*");
+            ORGANISASJONSELEMENT("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;

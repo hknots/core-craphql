@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public abstract class Utdanningsforhold implements FintAbstractObject {
     public enum Relasjonsnavn {
-            MEDLEMSKAP("no.fint.model.utdanning.basisklasser.Medlemskap", "0..*");
+            MEDLEMSKAP("no.fint.model.utdanning.elev.Medlemskap", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -35,8 +35,8 @@ public abstract class Utdanningsforhold implements FintAbstractObject {
         }
     }
 
-    @NotBlank
+    
     private String beskrivelse;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

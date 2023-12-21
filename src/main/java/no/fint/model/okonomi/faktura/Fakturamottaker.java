@@ -15,7 +15,7 @@ import no.fint.model.FintComplexDatatypeObject;
 @ToString
 public class Fakturamottaker implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            PERSON("no.fint.model.okonomi.faktura.Person", "1");
+            PERSON("no.fint.model.felles.Person", "1");
 	
 		private final String typeName;
         private final String multiplicity;

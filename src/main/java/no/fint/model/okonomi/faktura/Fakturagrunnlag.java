@@ -1,17 +1,15 @@
 package no.fint.model.okonomi.faktura;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
-import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import no.fint.model.FintMainObject;
-import no.fint.model.okonomi.faktura.Fakturalinje;
-import java.util.Date;
-import no.fint.model.okonomi.faktura.Fakturamottaker;
 import no.fint.model.felles.kompleksedatatyper.Identifikator;
+
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,10 +17,10 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Fakturagrunnlag implements FintMainObject {
     public enum Relasjonsnavn {
-            FAKTURA("no.fint.model.okonomi.faktura.Faktura", "0..*"),
-            FAKTURAUTSTEDER("no.fint.model.okonomi.faktura.Fakturautsteder", "1");
-	
-		private final String typeName;
+        FAKTURA("no.fint.model.okonomi.faktura.Faktura", "0..*"),
+        FAKTURAUTSTEDER("no.fint.model.okonomi.faktura.Fakturautsteder", "1");
+
+        private final String typeName;
         private final String multiplicity;
 
         private Relasjonsnavn(String typeName, String multiplicity) {
@@ -40,13 +38,12 @@ public class Fakturagrunnlag implements FintMainObject {
     }
 
     private Long avgiftsbelop;
-    @NotEmpty
-    private List<@Valid Fakturalinje> fakturalinjer;
+    private List<Fakturalinje> fakturalinjer;
     private Date leveringsdato;
     @NotNull
-    private @Valid Fakturamottaker mottaker;
+    private Fakturamottaker mottaker;
     private Long nettobelop;
     @NotNull
-    private @Valid Identifikator ordrenummer;
+    private Identifikator ordrenummer;
     private Long totalbelop;
 }

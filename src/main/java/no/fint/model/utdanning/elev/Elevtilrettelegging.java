@@ -17,8 +17,8 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 public class Elevtilrettelegging implements FintMainObject {
     public enum Relasjonsnavn {
             ELEV("no.fint.model.utdanning.elev.Elevforhold", "1"),
-            FAG("no.fint.model.utdanning.elev.Fag", "0..1"),
-            TILRETTELEGGING("no.fint.model.utdanning.elev.Tilrettelegging", "1");
+            FAG("no.fint.model.utdanning.timeplan.Fag", "0..1"),
+            TILRETTELEGGING("no.fint.model.utdanning.kodeverk.Tilrettelegging", "1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -38,5 +38,5 @@ public class Elevtilrettelegging implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

@@ -18,7 +18,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Klassifikasjonssystem implements FintMainObject {
     public enum Relasjonsnavn {
-            KLASSIFIKASJONSTYPE("no.fint.model.arkiv.noark.Klassifikasjonstype", "0..1"),
+            KLASSIFIKASJONSTYPE("no.fint.model.arkiv.kodeverk.Klassifikasjonstype", "0..1"),
             ARKIVDEL("no.fint.model.arkiv.noark.Arkivdel", "1..*");
 	
 		private final String typeName;
@@ -39,16 +39,15 @@ public class Klassifikasjonssystem implements FintMainObject {
     }
 
     private String avsluttetAv;
-    private @Valid Date avsluttetDato;
+    private Date avsluttetDato;
     private String beskrivelse;
-    @NotEmpty
-    private List<@Valid Klasse> klasse;
-    @NotBlank
+    private List<Klasse> klasse;
+    
     private String opprettetAv;
     @NotNull
-    private @Valid Date opprettetDato;
+    private Date opprettetDato;
     @NotNull
-    private @Valid Identifikator systemId;
-    @NotBlank
+    private Identifikator systemId;
+    
     private String tittel;
 }

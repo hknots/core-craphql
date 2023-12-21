@@ -18,9 +18,9 @@ public class Kontaktlarergruppe extends Gruppe implements FintMainObject {
     public enum Relasjonsnavn {
             BASISGRUPPE("no.fint.model.utdanning.elev.Basisgruppe", "1..*"),
             ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..*"),
-            TERMIN("no.fint.model.utdanning.elev.Termin", "0..*"),
-            SKOLE("no.fint.model.utdanning.elev.Skole", "1"),
-            SKOLEAR("no.fint.model.utdanning.elev.Skolear", "0..1"),
+            TERMIN("no.fint.model.utdanning.kodeverk.Termin", "0..*"),
+            SKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "1"),
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1"),
             UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "0..*"),
             GRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Kontaktlarergruppemedlemskap", "0..*");
 	

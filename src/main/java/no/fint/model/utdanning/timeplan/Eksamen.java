@@ -18,7 +18,7 @@ import no.fint.model.felles.kompleksedatatyper.Periode;
 public class Eksamen implements FintMainObject {
     public enum Relasjonsnavn {
             ROM("no.fint.model.utdanning.timeplan.Rom", "0..*"),
-            EKSAMENSGRUPPE("no.fint.model.utdanning.timeplan.Eksamensgruppe", "0..*");
+            EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -38,10 +38,10 @@ public class Eksamen implements FintMainObject {
     }
 
     private String beskrivelse;
-    @NotBlank
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
     @NotNull
-    private @Valid Periode tidsrom;
+    private Periode tidsrom;
 }

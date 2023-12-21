@@ -17,8 +17,8 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Behandling implements FintMainObject {
     public enum Relasjonsnavn {
-            BEHANDLINGSGRUNNLAG("no.fint.model.personvern.samtykke.Behandlingsgrunnlag", "1"),
-            PERSONOPPLYSNING("no.fint.model.personvern.samtykke.Personopplysning", "1"),
+            BEHANDLINGSGRUNNLAG("no.fint.model.personvern.kodeverk.Behandlingsgrunnlag", "1"),
+            PERSONOPPLYSNING("no.fint.model.personvern.kodeverk.Personopplysning", "1"),
             SAMTYKKE("no.fint.model.personvern.samtykke.Samtykke", "0..*"),
             TJENESTE("no.fint.model.personvern.samtykke.Tjeneste", "1");
 	
@@ -41,9 +41,8 @@ public class Behandling implements FintMainObject {
 
     @NotNull
     private Boolean aktiv;
-    @NotBlank
     private String formal;
-    private @Valid Date slettet;
+    private Date slettet;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

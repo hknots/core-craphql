@@ -17,9 +17,9 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public abstract class Gruppe implements FintAbstractObject {
     public enum Relasjonsnavn {
-            GREPREFERANSE("no.fint.model.utdanning.basisklasser.Grepreferanse", "0..1"),
-            VIGOREFERANSE("no.fint.model.utdanning.basisklasser.Vigoreferanse", "0..1"),
-            MEDLEMSKAP("no.fint.model.utdanning.basisklasser.Medlemskap", "0..*");
+            GREPREFERANSE("no.fint.model.utdanning.kodeverk.Grepreferanse", "0..1"),
+            VIGOREFERANSE("no.fint.model.utdanning.kodeverk.Vigoreferanse", "0..1"),
+            MEDLEMSKAP("no.fint.model.utdanning.elev.Medlemskap", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -38,12 +38,12 @@ public abstract class Gruppe implements FintAbstractObject {
         }
     }
 
-    @NotBlank
+    
     private String beskrivelse;
-    @NotBlank
+    
     private String navn;
     @Deprecated
-    private List<@Valid Periode> periode;
+    private List<Periode> periode;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

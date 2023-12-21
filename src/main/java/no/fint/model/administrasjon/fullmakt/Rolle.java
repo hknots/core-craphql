@@ -35,8 +35,8 @@ public class Rolle implements FintMainObject {
         }
     }
 
-    @NotBlank
+    
     private String beskrivelse;
     @NotNull
-    private @Valid Identifikator navn;
+    private Identifikator navn;
 }

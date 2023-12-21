@@ -19,8 +19,8 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 public class Samtykke implements FintMainObject {
     public enum Relasjonsnavn {
             BEHANDLING("no.fint.model.personvern.samtykke.Behandling", "1"),
-            PERSON("no.fint.model.personvern.samtykke.Person", "1"),
-            ORGANISASJONSELEMENT("no.fint.model.personvern.samtykke.Organisasjonselement", "0..1");
+            PERSON("no.fint.model.felles.Person", "1"),
+            ORGANISASJONSELEMENT("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -40,9 +40,9 @@ public class Samtykke implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Periode gyldighetsperiode;
+    private Periode gyldighetsperiode;
     @NotNull
-    private @Valid Date opprettet;
+    private Date opprettet;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

@@ -35,6 +35,6 @@ public class Rettighet extends Begrep implements FintMainObject {
         }
     }
 
-    @NotBlank
+    
     private String beskrivelse;
 }

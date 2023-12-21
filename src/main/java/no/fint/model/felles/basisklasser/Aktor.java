@@ -16,6 +16,6 @@ import no.fint.model.felles.kompleksedatatyper.Adresse;
 @EqualsAndHashCode
 @ToString
 public abstract class Aktor implements FintAbstractObject {
-    private @Valid Kontaktinformasjon kontaktinformasjon;
-    private @Valid Adresse postadresse;
+    private Kontaktinformasjon kontaktinformasjon;
+    private Adresse postadresse;
 }

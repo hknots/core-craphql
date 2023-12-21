@@ -17,10 +17,10 @@ import no.fint.model.arkiv.noark.Saksmappe;
 @ToString(callSuper=true)
 public class Personalmappe extends Saksmappe implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSON("no.fint.model.arkiv.personal.Person", "1"),
-            LEDER("no.fint.model.arkiv.personal.Personalressurs", "1"),
-            ARBEIDSSTED("no.fint.model.arkiv.personal.Organisasjonselement", "1"),
-            PERSONALRESSURS("no.fint.model.arkiv.personal.Personalressurs", "1");
+            PERSON("no.fint.model.felles.Person", "1"),
+            LEDER("no.fint.model.administrasjon.personal.Personalressurs", "1"),
+            ARBEIDSSTED("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "1"),
+            PERSONALRESSURS("no.fint.model.administrasjon.personal.Personalressurs", "1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -40,5 +40,5 @@ public class Personalmappe extends Saksmappe implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Personnavn navn;
+    private Personnavn navn;
 }

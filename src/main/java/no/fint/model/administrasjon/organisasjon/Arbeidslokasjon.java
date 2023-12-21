@@ -17,7 +17,7 @@ import no.fint.model.felles.basisklasser.Enhet;
 @ToString(callSuper=true)
 public class Arbeidslokasjon extends Enhet implements FintMainObject {
     public enum Relasjonsnavn {
-            ARBEIDSFORHOLD("no.fint.model.administrasjon.organisasjon.Arbeidsforhold", "0..*");
+            ARBEIDSFORHOLD("no.fint.model.administrasjon.personal.Arbeidsforhold", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -37,6 +37,6 @@ public class Arbeidslokasjon extends Enhet implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator lokasjonskode;
+    private Identifikator lokasjonskode;
     private String lokasjonsnavn;
 }

@@ -16,7 +16,7 @@ import no.fint.model.utdanning.vurdering.Fagvurdering;
 @ToString(callSuper=true)
 public class Underveisfagvurdering extends Fagvurdering implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.vurdering.Elevforhold", "1");
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "1");
 	
 		private final String typeName;
         private final String multiplicity;

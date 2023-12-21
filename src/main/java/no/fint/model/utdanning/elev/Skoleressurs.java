@@ -16,11 +16,11 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Skoleressurs implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSON("no.fint.model.utdanning.elev.Person", "0..1"),
-            PERSONALRESSURS("no.fint.model.utdanning.elev.Personalressurs", "1"),
+            PERSON("no.fint.model.felles.Person", "0..1"),
+            PERSONALRESSURS("no.fint.model.administrasjon.personal.Personalressurs", "1"),
             UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "0..*"),
-            SKOLE("no.fint.model.utdanning.elev.Skole", "0..*"),
-            SENSOR("no.fint.model.utdanning.elev.Sensor", "0..*");
+            SKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "0..*"),
+            SENSOR("no.fint.model.utdanning.vurdering.Sensor", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -39,7 +39,7 @@ public class Skoleressurs implements FintMainObject {
         }
     }
 
-    private @Valid Identifikator feidenavn;
+    private Identifikator feidenavn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

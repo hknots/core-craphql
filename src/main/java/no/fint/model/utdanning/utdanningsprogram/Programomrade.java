@@ -16,9 +16,9 @@ import no.fint.model.utdanning.basisklasser.Gruppe;
 @ToString(callSuper=true)
 public class Programomrade extends Gruppe implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.utdanningsprogram.Elevforhold", "0..*"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..*"),
             UTDANNINGSPROGRAM("no.fint.model.utdanning.utdanningsprogram.Utdanningsprogram", "1..*"),
-            FAG("no.fint.model.utdanning.utdanningsprogram.Fag", "0..*"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "0..*"),
             TRINN("no.fint.model.utdanning.utdanningsprogram.Arstrinn", "0..*"),
             GRUPPEMEDLEMSKAP("no.fint.model.utdanning.utdanningsprogram.Programomrademedlemskap", "0..*");
 	

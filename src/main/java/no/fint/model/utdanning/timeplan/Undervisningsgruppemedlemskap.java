@@ -16,7 +16,7 @@ import no.fint.model.utdanning.basisklasser.Gruppemedlemskap;
 @ToString(callSuper=true)
 public class Undervisningsgruppemedlemskap extends Gruppemedlemskap implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.timeplan.Elevforhold", "1"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "1"),
             UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "1");
 	
 		private final String typeName;

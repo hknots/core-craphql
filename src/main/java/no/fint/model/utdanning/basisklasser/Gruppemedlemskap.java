@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @EqualsAndHashCode
 @ToString
 public abstract class Gruppemedlemskap implements FintAbstractObject {
-    private @Valid Periode gyldighetsperiode;
+    private Periode gyldighetsperiode;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

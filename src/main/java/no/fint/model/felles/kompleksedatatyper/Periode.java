@@ -16,7 +16,7 @@ import java.util.Date;
 @ToString
 public class Periode implements FintComplexDatatypeObject {
     private String beskrivelse;
-    private @Valid Date slutt;
+    private Date slutt;
     @NotNull
-    private @Valid Date start;
+    private Date start;
 }

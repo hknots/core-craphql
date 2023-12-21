@@ -16,9 +16,9 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Leverandor implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSON("no.fint.model.okonomi.regnskap.Person", "0..1"),
+            PERSON("no.fint.model.felles.Person", "0..1"),
             LEVERANDORGRUPPE("no.fint.model.okonomi.regnskap.Leverandorgruppe", "0..1"),
-            VIRKSOMHET("no.fint.model.okonomi.regnskap.Virksomhet", "0..1");
+            VIRKSOMHET("no.fint.model.felles.Virksomhet", "0..1");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -38,7 +38,7 @@ public class Leverandor implements FintMainObject {
     }
 
     private String kontonummer;
-    private @Valid Identifikator leverandornummer;
+    private Identifikator leverandornummer;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

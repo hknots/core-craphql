@@ -18,7 +18,7 @@ import no.fint.model.felles.kompleksedatatyper.Kontaktinformasjon;
 @ToString
 public class Elev implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSON("no.fint.model.utdanning.elev.Person", "1"),
+            PERSON("no.fint.model.felles.Person", "1"),
             ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..*");
 	
 		private final String typeName;
@@ -38,12 +38,12 @@ public class Elev implements FintMainObject {
         }
     }
 
-    private @Valid Identifikator brukernavn;
-    private @Valid Identifikator elevnummer;
-    private @Valid Identifikator feidenavn;
+    private Identifikator brukernavn;
+    private Identifikator elevnummer;
+    private Identifikator feidenavn;
     private Boolean gjest;
-    private @Valid Adresse hybeladresse;
-    private @Valid Kontaktinformasjon kontaktinformasjon;
+    private Adresse hybeladresse;
+    private Kontaktinformasjon kontaktinformasjon;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

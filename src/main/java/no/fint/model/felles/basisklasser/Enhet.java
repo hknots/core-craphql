@@ -17,7 +17,7 @@ import no.fint.model.felles.basisklasser.Aktor;
 @EqualsAndHashCode(callSuper=true)
 @ToString(callSuper=true)
 public abstract class Enhet extends Aktor implements FintAbstractObject {
-    private @Valid Adresse forretningsadresse;
+    private Adresse forretningsadresse;
     private String organisasjonsnavn;
-    private @Valid Identifikator organisasjonsnummer;
+    private Identifikator organisasjonsnummer;
 }

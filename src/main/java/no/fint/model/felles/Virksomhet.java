@@ -17,7 +17,7 @@ import no.fint.model.felles.basisklasser.Enhet;
 @ToString(callSuper=true)
 public class Virksomhet extends Enhet implements FintMainObject {
     public enum Relasjonsnavn {
-            LARLING("no.fint.model.felles.Larling", "0..*");
+            LARLING("no.fint.model.utdanning.larling.Larling", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -37,5 +37,5 @@ public class Virksomhet extends Enhet implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator virksomhetsId;
+    private Identifikator virksomhetsId;
 }

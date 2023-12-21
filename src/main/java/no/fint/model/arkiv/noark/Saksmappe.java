@@ -19,8 +19,8 @@ import no.fint.model.arkiv.noark.Mappe;
 @ToString(callSuper=true)
 public abstract class Saksmappe extends Mappe implements FintAbstractObject {
     public enum Relasjonsnavn {
-            SAKSMAPPETYPE("no.fint.model.arkiv.noark.Saksmappetype", "0..1"),
-            SAKSSTATUS("no.fint.model.arkiv.noark.Saksstatus", "1"),
+            SAKSMAPPETYPE("no.fint.model.arkiv.kodeverk.Saksmappetype", "0..1"),
+            SAKSSTATUS("no.fint.model.arkiv.kodeverk.Saksstatus", "1"),
             JOURNALENHET("no.fint.model.arkiv.noark.AdministrativEnhet", "0..1"),
             ADMINISTRATIVENHET("no.fint.model.arkiv.noark.AdministrativEnhet", "1"),
             SAKSANSVARLIG("no.fint.model.arkiv.noark.Arkivressurs", "1");
@@ -42,10 +42,10 @@ public abstract class Saksmappe extends Mappe implements FintAbstractObject {
         }
     }
 
-    private List<@Valid Registrering> arkivnotat;
-    private List<@Valid Journalpost> journalpost;
+    private List<Registrering> arkivnotat;
+    private List<Journalpost> journalpost;
     private String saksaar;
-    private @Valid Date saksdato;
+    private Date saksdato;
     private String sakssekvensnummer;
-    private @Valid Date utlaantDato;
+    private Date utlaantDato;
 }

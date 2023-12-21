@@ -18,7 +18,7 @@ import no.fint.model.felles.kompleksedatatyper.Periode;
 public class Time implements FintMainObject {
     public enum Relasjonsnavn {
             UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "1..*"),
-            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.timeplan.Undervisningsforhold", "1..*"),
+            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "1..*"),
             ROM("no.fint.model.utdanning.timeplan.Rom", "0..*");
 	
 		private final String typeName;
@@ -39,10 +39,10 @@ public class Time implements FintMainObject {
     }
 
     private String beskrivelse;
-    @NotBlank
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
     @NotNull
-    private @Valid Periode tidsrom;
+    private Periode tidsrom;
 }

@@ -36,9 +36,9 @@ public class Tjeneste implements FintMainObject {
         }
     }
 
-    @NotBlank
+    
     private String navn;
-    private @Valid Date slettet;
+    private Date slettet;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

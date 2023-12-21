@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Tilgang implements FintMainObject {
     public enum Relasjonsnavn {
-            ROLLE("no.fint.model.arkiv.noark.Rolle", "1"),
+            ROLLE("no.fint.model.arkiv.kodeverk.Rolle", "1"),
             ADMINISTRATIVENHET("no.fint.model.arkiv.noark.AdministrativEnhet", "0..1"),
             ARKIVDEL("no.fint.model.arkiv.noark.Arkivdel", "0..1"),
             ARKIVRESSURS("no.fint.model.arkiv.noark.Arkivressurs", "0..*");
@@ -39,7 +39,7 @@ public class Tilgang implements FintMainObject {
     }
 
     @NotNull
-    private @Valid Identifikator systemId;
-    @NotBlank
+    private Identifikator systemId;
+    
     private String tittel;
 }

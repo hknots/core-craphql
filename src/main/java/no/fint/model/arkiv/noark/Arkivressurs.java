@@ -16,7 +16,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Arkivressurs implements FintMainObject {
     public enum Relasjonsnavn {
-            PERSONALRESSURS("no.fint.model.arkiv.noark.Personalressurs", "1"),
+            PERSONALRESSURS("no.fint.model.administrasjon.personal.Personalressurs", "1"),
             AUTORISASJON("no.fint.model.arkiv.noark.Autorisasjon", "0..*"),
             TILGANG("no.fint.model.arkiv.noark.Tilgang", "0..*");
 	
@@ -37,6 +37,6 @@ public class Arkivressurs implements FintMainObject {
         }
     }
 
-    private @Valid Identifikator kildesystemId;
-    private @Valid Identifikator systemId;
+    private Identifikator kildesystemId;
+    private Identifikator systemId;
 }

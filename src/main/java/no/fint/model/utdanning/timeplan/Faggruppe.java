@@ -17,8 +17,8 @@ import no.fint.model.utdanning.basisklasser.Gruppe;
 public class Faggruppe extends Gruppe implements FintMainObject {
     public enum Relasjonsnavn {
             FAG("no.fint.model.utdanning.timeplan.Fag", "1"),
-            SKOLE("no.fint.model.utdanning.timeplan.Skole", "0..1"),
-            SKOLEAR("no.fint.model.utdanning.timeplan.Skolear", "0..1"),
+            SKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "0..1"),
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1"),
             FAGGRUPPEMEDLEMSKAP("no.fint.model.utdanning.timeplan.Faggruppemedlemskap", "0..*");
 	
 		private final String typeName;

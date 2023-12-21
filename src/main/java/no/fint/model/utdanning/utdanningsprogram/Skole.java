@@ -17,18 +17,18 @@ import no.fint.model.felles.basisklasser.Enhet;
 @ToString(callSuper=true)
 public class Skole extends Enhet implements FintMainObject {
     public enum Relasjonsnavn {
-            ORGANISASJON("no.fint.model.utdanning.utdanningsprogram.Organisasjonselement", "0..1"),
-            FAG("no.fint.model.utdanning.utdanningsprogram.Fag", "0..*"),
-            SKOLEEIERTYPE("no.fint.model.utdanning.utdanningsprogram.Skoleeiertype", "0..1"),
-            VIGOREFERANSE("no.fint.model.utdanning.utdanningsprogram.Vigoreferanse", "0..1"),
-            BASISGRUPPE("no.fint.model.utdanning.utdanningsprogram.Basisgruppe", "0..*"),
-            ELEVFORHOLD("no.fint.model.utdanning.utdanningsprogram.Elevforhold", "0..*"),
-            KONTAKTLARERGRUPPE("no.fint.model.utdanning.utdanningsprogram.Kontaktlarergruppe", "0..*"),
-            SKOLERESSURS("no.fint.model.utdanning.utdanningsprogram.Skoleressurs", "0..*"),
-            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.utdanningsprogram.Undervisningsforhold", "0..*"),
-            FAGGRUPPE("no.fint.model.utdanning.utdanningsprogram.Faggruppe", "0..*"),
-            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.utdanningsprogram.Undervisningsgruppe", "0..*"),
-            EKSAMENSGRUPPE("no.fint.model.utdanning.utdanningsprogram.Eksamensgruppe", "0..*"),
+            ORGANISASJON("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "0..1"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "0..*"),
+            SKOLEEIERTYPE("no.fint.model.utdanning.kodeverk.Skoleeiertype", "0..1"),
+            VIGOREFERANSE("no.fint.model.utdanning.kodeverk.Vigoreferanse", "0..1"),
+            BASISGRUPPE("no.fint.model.utdanning.elev.Basisgruppe", "0..*"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..*"),
+            KONTAKTLARERGRUPPE("no.fint.model.utdanning.elev.Kontaktlarergruppe", "0..*"),
+            SKOLERESSURS("no.fint.model.utdanning.elev.Skoleressurs", "0..*"),
+            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "0..*"),
+            FAGGRUPPE("no.fint.model.utdanning.timeplan.Faggruppe", "0..*"),
+            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "0..*"),
+            EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "0..*"),
             UTDANNINGSPROGRAM("no.fint.model.utdanning.utdanningsprogram.Utdanningsprogram", "0..*");
 	
 		private final String typeName;
@@ -50,10 +50,10 @@ public class Skole extends Enhet implements FintMainObject {
 
     private String domenenavn;
     private String juridiskNavn;
-    @NotBlank
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator skolenummer;
+    private Identifikator skolenummer;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

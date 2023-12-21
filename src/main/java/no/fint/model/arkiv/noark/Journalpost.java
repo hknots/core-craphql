@@ -18,8 +18,8 @@ import no.fint.model.arkiv.noark.Registrering;
 @ToString(callSuper=true)
 public class Journalpost extends Registrering implements FintComplexDatatypeObject {
     public enum Relasjonsnavn {
-            JOURNALPOSTTYPE("no.fint.model.arkiv.noark.JournalpostType", "1"),
-            JOURNALSTATUS("no.fint.model.arkiv.noark.JournalStatus", "1"),
+            JOURNALPOSTTYPE("no.fint.model.arkiv.kodeverk.JournalpostType", "1"),
+            JOURNALSTATUS("no.fint.model.arkiv.kodeverk.JournalStatus", "1"),
             JOURNALENHET("no.fint.model.arkiv.noark.AdministrativEnhet", "0..1");
 	
 		private final String typeName;
@@ -40,14 +40,14 @@ public class Journalpost extends Registrering implements FintComplexDatatypeObje
     }
 
     private Long antallVedlegg;
-    private @Valid Avskrivning avskrivning;
-    private @Valid Date dokumentetsDato;
-    private @Valid Date forfallsDato;
+    private Avskrivning avskrivning;
+    private Date dokumentetsDato;
+    private Date forfallsDato;
     private String journalAr;
-    private @Valid Date journalDato;
+    private Date journalDato;
     private Long journalPostnummer;
     private Long journalSekvensnummer;
-    private @Valid Date mottattDato;
-    private @Valid Date offentlighetsvurdertDato;
-    private @Valid Date sendtDato;
+    private Date mottattDato;
+    private Date offentlighetsvurdertDato;
+    private Date sendtDato;
 }

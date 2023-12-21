@@ -17,9 +17,9 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @Deprecated
 public class Vurdering implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.vurdering.Elevforhold", "0..1"),
-            FAG("no.fint.model.utdanning.vurdering.Fag", "0..1"),
-            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.vurdering.Undervisningsgruppe", "0..1"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..1"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "0..1"),
+            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "0..1"),
             EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "0..1"),
             KARAKTER("no.fint.model.utdanning.vurdering.Karakterverdi", "1");
 	
@@ -42,8 +42,8 @@ public class Vurdering implements FintMainObject {
 
     @NotNull
     private Boolean endelig;
-    @NotBlank
+    
     private String kommentar;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

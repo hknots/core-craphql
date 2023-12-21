@@ -37,19 +37,19 @@ public class Faktura implements FintMainObject {
         }
     }
 
-    private @Valid Adresse adresse;
+    private Adresse adresse;
     @NotNull
     private Long belop;
     private Boolean betalt;
     @NotNull
     private Date dato;
     @NotNull
-    private @Valid Identifikator fakturanummer;
+    private Identifikator fakturanummer;
     private Boolean fakturert;
     @NotNull
     private Date forfallsdato;
     private Boolean kreditert;
-    @NotBlank
+    
     private String mottaker;
     private Long restbelop;
 }

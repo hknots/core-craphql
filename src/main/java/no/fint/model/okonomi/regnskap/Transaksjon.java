@@ -19,8 +19,8 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 public class Transaksjon implements FintMainObject {
     public enum Relasjonsnavn {
             LEVERANDOR("no.fint.model.okonomi.regnskap.Leverandor", "0..1"),
-            ANSVARLIG("no.fint.model.okonomi.regnskap.Personalressurs", "0..1"),
-            VALUTA("no.fint.model.okonomi.regnskap.Valuta", "1"),
+            ANSVARLIG("no.fint.model.administrasjon.personal.Personalressurs", "0..1"),
+            VALUTA("no.fint.model.felles.kodeverk.Valuta", "1"),
             POSTERING("no.fint.model.okonomi.regnskap.Postering", "1..*");
 	
 		private final String typeName;
@@ -43,10 +43,10 @@ public class Transaksjon implements FintMainObject {
     @NotNull
     private Long belop;
     private String beskrivelse;
-    private List<@Valid Bilag> bilag;
+    private List<Bilag> bilag;
     @NotNull
     private Date forfallsdato;
     private Date oppdateringstidspunkt;
-    private @Valid Identifikator transaksjonsId;
+    private Identifikator transaksjonsId;
     private Date transaksjonstidspunkt;
 }

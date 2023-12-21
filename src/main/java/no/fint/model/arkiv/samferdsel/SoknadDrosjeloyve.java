@@ -15,8 +15,8 @@ import no.fint.model.arkiv.noark.Saksmappe;
 @EqualsAndHashCode(callSuper=true)
 @ToString(callSuper=true)
 public class SoknadDrosjeloyve extends Saksmappe implements FintMainObject {
-    @NotBlank
+    
     private String organisasjonsnavn;
-    @NotBlank
+    
     private String organisasjonsnummer;
 }

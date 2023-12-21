@@ -20,35 +20,35 @@ import no.fint.model.utdanning.basisklasser.Utdanningsforhold;
 public class Elevforhold extends Utdanningsforhold implements FintMainObject {
     public enum Relasjonsnavn {
             ELEV("no.fint.model.utdanning.elev.Elev", "1"),
-            SIDEMAL("no.fint.model.utdanning.elev.Fagmerknad", "0..*"),
-            KATEGORI("no.fint.model.utdanning.elev.Elevkategori", "0..1"),
-            KROPPSOVING("no.fint.model.utdanning.elev.Fagmerknad", "0..1"),
-            SKOLE("no.fint.model.utdanning.elev.Skole", "1"),
-            AVBRUDDSARSAK("no.fint.model.utdanning.elev.Avbruddsarsak", "0..*"),
-            FRAVARSREGISTRERINGER("no.fint.model.utdanning.elev.Elevfravar", "0..1"),
-            FAGGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Faggruppemedlemskap", "0..*"),
-            SKOLEAR("no.fint.model.utdanning.elev.Skolear", "0..1"),
+            SIDEMAL("no.fint.model.utdanning.kodeverk.Fagmerknad", "0..*"),
+            KATEGORI("no.fint.model.utdanning.kodeverk.Elevkategori", "0..1"),
+            KROPPSOVING("no.fint.model.utdanning.kodeverk.Fagmerknad", "0..1"),
+            SKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "1"),
+            AVBRUDDSARSAK("no.fint.model.utdanning.kodeverk.Avbruddsarsak", "0..*"),
+            FRAVARSREGISTRERINGER("no.fint.model.utdanning.vurdering.Elevfravar", "0..1"),
+            FAGGRUPPEMEDLEMSKAP("no.fint.model.utdanning.timeplan.Faggruppemedlemskap", "0..*"),
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1"),
             BASISGRUPPE("no.fint.model.utdanning.elev.Basisgruppe", "0..*"),
             BASISGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Basisgruppemedlemskap", "0..*"),
-            UNDERVISNINGSGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Undervisningsgruppemedlemskap", "0..*"),
-            VURDERING("no.fint.model.utdanning.elev.Vurdering", "0..*"),
-            SLUTTORDENSVURDERING("no.fint.model.utdanning.elev.Sluttordensvurdering", "0..*"),
+            UNDERVISNINGSGRUPPEMEDLEMSKAP("no.fint.model.utdanning.timeplan.Undervisningsgruppemedlemskap", "0..*"),
+            VURDERING("no.fint.model.utdanning.vurdering.Vurdering", "0..*"),
+            SLUTTORDENSVURDERING("no.fint.model.utdanning.vurdering.Sluttordensvurdering", "0..*"),
             KONTAKTLARERGRUPPE("no.fint.model.utdanning.elev.Kontaktlarergruppe", "0..*"),
-            UNDERVEISFAGVURDERING("no.fint.model.utdanning.elev.Underveisfagvurdering", "0..*"),
-            HALVARSFAGVURDERING("no.fint.model.utdanning.elev.Halvarsfagvurdering", "0..*"),
-            SLUTTFAGVURDERING("no.fint.model.utdanning.elev.Sluttfagvurdering", "0..*"),
+            UNDERVEISFAGVURDERING("no.fint.model.utdanning.vurdering.Underveisfagvurdering", "0..*"),
+            HALVARSFAGVURDERING("no.fint.model.utdanning.vurdering.Halvarsfagvurdering", "0..*"),
+            SLUTTFAGVURDERING("no.fint.model.utdanning.vurdering.Sluttfagvurdering", "0..*"),
             PERSONGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Persongruppemedlemskap", "0..*"),
-            EKSAMENSGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Eksamensgruppemedlemskap", "0..*"),
+            EKSAMENSGRUPPEMEDLEMSKAP("no.fint.model.utdanning.vurdering.Eksamensgruppemedlemskap", "0..*"),
             KONTAKTLARERGRUPPEMEDLEMSKAP("no.fint.model.utdanning.elev.Kontaktlarergruppemedlemskap", "0..*"),
-            ELEVFRAVAR("no.fint.model.utdanning.elev.Fravarsoversikt", "0..*"),
+            ELEVFRAVAR("no.fint.model.utdanning.vurdering.Fravarsoversikt", "0..*"),
             TILRETTELEGGING("no.fint.model.utdanning.elev.Elevtilrettelegging", "0..*"),
-            HALVARSORDENSVURDERING("no.fint.model.utdanning.elev.Halvarsordensvurdering", "0..*"),
-            PROGRAMOMRADE("no.fint.model.utdanning.elev.Programomrade", "0..1"),
-            FRAVAR("no.fint.model.utdanning.elev.Fravar", "0..*"),
-            PROGRAMOMRADEMEDLEMSKAP("no.fint.model.utdanning.elev.Programomrademedlemskap", "0..*"),
-            UNDERVEISORDENSVURDERING("no.fint.model.utdanning.elev.Underveisordensvurdering", "0..*"),
-            EKSAMENSGRUPPE("no.fint.model.utdanning.elev.Eksamensgruppe", "0..*"),
-            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.elev.Undervisningsgruppe", "0..*");
+            HALVARSORDENSVURDERING("no.fint.model.utdanning.vurdering.Halvarsordensvurdering", "0..*"),
+            PROGRAMOMRADE("no.fint.model.utdanning.utdanningsprogram.Programomrade", "0..1"),
+            FRAVAR("no.fint.model.utdanning.vurdering.Fravar", "0..*"),
+            PROGRAMOMRADEMEDLEMSKAP("no.fint.model.utdanning.utdanningsprogram.Programomrademedlemskap", "0..*"),
+            UNDERVEISORDENSVURDERING("no.fint.model.utdanning.vurdering.Underveisordensvurdering", "0..*"),
+            EKSAMENSGRUPPE("no.fint.model.utdanning.vurdering.Eksamensgruppe", "0..*"),
+            UNDERVISNINGSGRUPPE("no.fint.model.utdanning.timeplan.Undervisningsgruppe", "0..*");
 	
 		private final String typeName;
         private final String multiplicity;
@@ -67,9 +67,9 @@ public class Elevforhold extends Utdanningsforhold implements FintMainObject {
         }
     }
 
-    private List<@Valid Anmerkninger> anmerkninger;
+    private List<Anmerkninger> anmerkninger;
     private Date avbruddsdato;
-    private @Valid Periode gyldighetsperiode;
+    private Periode gyldighetsperiode;
     private Boolean hovedskole;
     private Boolean tosprakligFagopplaring;
 }

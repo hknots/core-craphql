@@ -16,9 +16,9 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @ToString
 public class Valuta implements FintMainObject {
     @NotNull
-    private @Valid Identifikator bokstavkode;
-    @NotBlank
+    private Identifikator bokstavkode;
+    
     private String navn;
     @NotNull
-    private @Valid Identifikator nummerkode;
+    private Identifikator nummerkode;
 }

@@ -41,10 +41,10 @@ public class Kontaktperson implements FintMainObject {
     @Deprecated
     @NotNull
     private Boolean foreldreansvar;
-    private @Valid Kontaktinformasjon kontaktinformasjon;
-    private @Valid Personnavn navn;
+    private Kontaktinformasjon kontaktinformasjon;
+    private Personnavn navn;
     @NotNull
-    private @Valid Identifikator systemId;
-    @NotBlank
+    private Identifikator systemId;
+    
     private String type;
 }

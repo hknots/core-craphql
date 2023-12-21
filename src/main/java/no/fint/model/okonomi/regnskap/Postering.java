@@ -41,7 +41,7 @@ public class Postering implements FintMainObject {
     @NotNull
     private Boolean debet;
     @NotNull
-    private @Valid Kontostreng kontering;
+    private Kontostreng kontering;
     @NotNull
-    private @Valid Identifikator posteringsId;
+    private Identifikator posteringsId;
 }

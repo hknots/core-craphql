@@ -15,11 +15,11 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator;
 @EqualsAndHashCode
 @ToString
 public class Dokumentfil implements FintMainObject {
-    @NotBlank
+    
     private String data;
     private String filnavn;
-    @NotBlank
+    
     private String format;
     @NotNull
-    private @Valid Identifikator systemId;
+    private Identifikator systemId;
 }

@@ -17,11 +17,11 @@ import no.fint.model.arkiv.noark.Saksmappe;
 @EqualsAndHashCode(callSuper=true)
 @ToString(callSuper=true)
 public class DispensasjonAutomatiskFredaKulturminne extends Saksmappe implements FintMainObject {
-    @NotBlank
+    
     private String kulturminneId;
     @NotNull
-    private @Valid Matrikkelnummer matrikkelnummer;
+    private Matrikkelnummer matrikkelnummer;
     @NotNull
-    private @Valid Identifikator soknadsnummer;
+    private Identifikator soknadsnummer;
     private String tiltak;
 }

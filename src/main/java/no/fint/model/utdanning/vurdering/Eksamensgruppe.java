@@ -17,14 +17,14 @@ import no.fint.model.utdanning.basisklasser.Gruppe;
 @ToString(callSuper=true)
 public class Eksamensgruppe extends Gruppe implements FintMainObject {
     public enum Relasjonsnavn {
-            ELEVFORHOLD("no.fint.model.utdanning.vurdering.Elevforhold", "0..*"),
-            EKSAMEN("no.fint.model.utdanning.vurdering.Eksamen", "0..1"),
-            FAG("no.fint.model.utdanning.vurdering.Fag", "1"),
-            SKOLE("no.fint.model.utdanning.vurdering.Skole", "1"),
-            TERMIN("no.fint.model.utdanning.vurdering.Termin", "1"),
-            EKSAMENSFORM("no.fint.model.utdanning.vurdering.Eksamensform", "0..1"),
-            SKOLEAR("no.fint.model.utdanning.vurdering.Skolear", "0..1"),
-            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.vurdering.Undervisningsforhold", "0..*"),
+            ELEVFORHOLD("no.fint.model.utdanning.elev.Elevforhold", "0..*"),
+            EKSAMEN("no.fint.model.utdanning.timeplan.Eksamen", "0..1"),
+            FAG("no.fint.model.utdanning.timeplan.Fag", "1"),
+            SKOLE("no.fint.model.utdanning.utdanningsprogram.Skole", "1"),
+            TERMIN("no.fint.model.utdanning.kodeverk.Termin", "1"),
+            EKSAMENSFORM("no.fint.model.utdanning.kodeverk.Eksamensform", "0..1"),
+            SKOLEAR("no.fint.model.utdanning.kodeverk.Skolear", "0..1"),
+            UNDERVISNINGSFORHOLD("no.fint.model.utdanning.elev.Undervisningsforhold", "0..*"),
             GRUPPEMEDLEMSKAP("no.fint.model.utdanning.vurdering.Eksamensgruppemedlemskap", "0..*"),
             SENSOR("no.fint.model.utdanning.vurdering.Sensor", "0..*");
 	
@@ -45,5 +45,5 @@ public class Eksamensgruppe extends Gruppe implements FintMainObject {
         }
     }
 
-    private @Valid Date eksamensdato;
+    private Date eksamensdato;
 }

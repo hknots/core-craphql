@@ -18,8 +18,8 @@ import no.fint.model.arkiv.noark.Saksmappe;
 @ToString(callSuper=true)
 public class TilskuddFredaBygningPrivatEie extends Saksmappe implements FintMainObject {
     private String bygningsnavn;
-    @NotBlank
+    
     private String kulturminneId;
-    private @Valid Matrikkelnummer matrikkelnummer;
-    private @Valid Identifikator soknadsnummer;
+    private Matrikkelnummer matrikkelnummer;
+    private Identifikator soknadsnummer;
 }

@@ -14,9 +14,9 @@ import no.fint.model.FintComplexDatatypeObject;
 @EqualsAndHashCode
 @ToString
 public class Personnavn implements FintComplexDatatypeObject {
-    @NotBlank
+    
     private String etternavn;
-    @NotBlank
+    
     private String fornavn;
     private String mellomnavn;
 }
