@@ -2,9 +2,8 @@ package no.fintlabs.coregraphql.reflection;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import no.fint.model.FintComplexDatatypeObject;
-import no.fintlabs.coregraphql.reflection.model.FintComplexObject;
 import no.fintlabs.coregraphql.reflection.model.FintMainObject;
+import no.fintlabs.coregraphql.reflection.model.FintObject;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +17,22 @@ import java.util.stream.Collectors;
 public class ReflectionService {
 
     private final Map<String, FintMainObject> fintMainObjects;
-    private final Map<String, FintComplexObject> fintComplexObjects;
+    private final Map<String, FintObject> allFintObjects;
     private final Map<String, Integer> simpleNameCounts = new HashMap<>();
 
     public ReflectionService() {
         gatherSimpleNameCounts();
         fintMainObjects = createFintMainObjects();
-        fintComplexObjects = createFintComplexObjects();
+        allFintObjects = createFintObjects();
+    }
+
+    private Map<String, FintObject> createFintObjects() {
+        return new Reflections("no.fint.model")
+                .getSubTypesOf(no.fint.model.FintObject.class)
+                .stream()
+                .collect(Collectors.toMap(Class::getName, clazz -> new FintObject(clazz, this) {
+                }));
+
     }
 
     private void gatherSimpleNameCounts() {
@@ -38,13 +46,6 @@ public class ReflectionService {
 
     public int getSimpleNameCount(String simpleName) {
         return simpleNameCounts.getOrDefault(simpleName, 0);
-    }
-
-    private Map<String, FintComplexObject> createFintComplexObjects() {
-        return new Reflections("no.fint.model")
-                .getSubTypesOf(FintComplexDatatypeObject.class)
-                .stream()
-                .collect(Collectors.toMap(Class::getName, clazz -> new FintComplexObject(clazz, this)));
     }
 
     private Map<String, FintMainObject> createFintMainObjects() {
