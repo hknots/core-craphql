@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import no.fintlabs.coregraphql.reflection.ReflectionService;
 import no.fintlabs.coregraphql.reflection.model.FintMainObject;
 import no.fintlabs.coregraphql.reflection.model.FintObject;
+import no.fintlabs.coregraphql.reflection.model.FintRelation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class QueryConfig {
 
-    private final Map<String, GraphQLObjectType> procsessedTypes = new HashMap<>();
+    private final Map<String, GraphQLObjectType> processedTypes = new HashMap<>();
     private final ReflectionService reflectionService;
 
     @Bean
@@ -45,7 +46,7 @@ public class QueryConfig {
         return GraphQLFieldDefinition.newFieldDefinition()
                 .name(fintMainObject.getSimpleName().toLowerCase())
                 .arguments(buildArguments(fintMainObject.getIdentifikatorFields()))
-                .type(createObjectType(fintMainObject))
+                .type(getOrCreateObjectType(fintMainObject))
                 .build();
     }
 
@@ -58,78 +59,64 @@ public class QueryConfig {
                 .collect(Collectors.toList());
     }
 
-    private GraphQLObjectType createObjectType(FintObject fintObject) {
-        if (typeIsProcessed(fintObject.getPackageName())) {
-            return procsessedTypes.get(fintObject.getPackageName());
+    private GraphQLObjectType getOrCreateObjectType(FintObject fintObject) {
+        String packageName = fintObject.getPackageName();
+        if (processedTypes.containsKey(packageName)) {
+            log.info("Using processed type: {}", packageName);
+            return processedTypes.get(packageName);
         }
 
+        // Create a placeholder type and store it in the registry to handle circular references
+        GraphQLObjectType placeholderType = GraphQLObjectType.newObject()
+                .name(fintObject.getUniqueName() + "_placeholder")
+                .build();
+
+        processedTypes.put(packageName, placeholderType);
+        GraphQLObjectType actualType = createObjectType(fintObject);
+        processedTypes.put(packageName, actualType);
+        return actualType;
+    }
+
+    private GraphQLObjectType createObjectType(FintObject fintObject) {
         log.info("Creating object: {}", fintObject.getPackageName());
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
                 .name(fintObject.getUniqueName());
 
-        fintObject.getRelations().forEach(relation -> {
+        for (FintRelation relation : fintObject.getRelations()) {
             log.info("Relation: {}", relation.packageName());
-            GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
-                    .name(relation.relationName());
-
-            if (typeIsProcessed(relation.packageName())) {
-                objectBuilder.field(fieldBuilder.type(procsessedTypes.get(relation.packageName())).build());
-            }
-            else {
-                objectBuilder.field(fieldBuilder.type(createNewType(relation.packageName())).build());
-            }
-        });
+            FintObject relatedObject = findRelatedFintObject(relation.packageName());
+            objectBuilder.field(GraphQLFieldDefinition.newFieldDefinition()
+                    .name(relation.relationName())
+                    .type(getOrCreateObjectType(relatedObject))
+                    .build());
+        }
 
         fintObject.getFields().forEach(field -> {
             GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
                     .name(field.getName());
-
-            if (typeIsProcessed(field.getType().getName())) {
-                log.info("Type: {} - {} has already been processed", field.getType().getSimpleName(), field.getName());
-                objectBuilder.field(fieldBuilder.type(procsessedTypes.get(field.getType().getName())).build());
-            } else if (typeIsFromJava(field.getType())) {
-                log.info("Type: {} - {} is from java", field.getType().getSimpleName(), field.getName());
+            if (typeIsFromJava(field.getType())) {
                 objectBuilder.field(fieldBuilder.type(Scalars.GraphQLString).build());
             } else {
-                log.warn("Type {} is not processed", field.getType().getSimpleName());
-                objectBuilder.field(fieldBuilder.type(createNewType(field.getType().getName())).build());
+                FintObject fieldTypeObject = findRelatedFintObject(field.getType().getName());
+                objectBuilder.field(fieldBuilder.type(getOrCreateObjectType(fieldTypeObject)).build());
             }
-
-            log.info("Type: {} - {} is created", field.getType().getSimpleName(), field.getName());
         });
-        GraphQLObjectType build = objectBuilder.build();
-        procsessedTypes.put(fintObject.getSimpleName(), build);
-        return build;
 
+        GraphQLObjectType builtType = objectBuilder.build();
+        processedTypes.put(fintObject.getPackageName(), builtType);
+        return builtType;
     }
 
-    private GraphQLObjectType createNewType(String typeName) {
-        if (reflectionService.getFintMainObjects().containsKey(typeName)) {
-            return createObjectType(reflectionService.getFintMainObjects().get(typeName));
-        } else if (reflectionService.getFintComplexObjects().containsKey(typeName)) {
-            return createObjectType(reflectionService.getFintComplexObjects().get(typeName));
-        } else {
-            log.error("Type {} not found", typeName);
-            return null;
+    private FintObject findRelatedFintObject(String packageName) {
+        if (reflectionService.getFintMainObjects().containsKey(packageName)) {
+            return reflectionService.getFintMainObjects().get(packageName);
+        } else if (reflectionService.getFintComplexObjects().containsKey(packageName)) {
+            return reflectionService.getFintComplexObjects().get(packageName);
         }
+        throw new RuntimeException("FintObject with package name '" + packageName + "' not found");
     }
 
     private boolean typeIsFromJava(Class<?> clazz) {
-        if (clazz.getClassLoader() == null) {
-            return true;
-        }
-
-        Package classPackage = clazz.getPackage();
-        if (classPackage != null) {
-            String packageName = classPackage.getName();
-            return packageName.startsWith("java") || packageName.startsWith("javax");
-        }
-
-        return false;
+        return clazz.getClassLoader() == null || clazz.getPackage().getName().startsWith("java") || clazz.getPackage().getName().startsWith("javax");
     }
-
-    private boolean typeIsProcessed(String typeName) {
-        return procsessedTypes.containsKey(typeName);
-    }
-
 }
