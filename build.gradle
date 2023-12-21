@@ -28,10 +28,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-    implementation("no.fint:fint-utdanning-model-java:${apiVersion}")
-    implementation("no.fint:fint-administrasjon-model-java:${apiVersion}")
-    implementation("no.fint:fint-personvern-model-java:${apiVersion}")
-    implementation("no.fint:fint-okonomi-model-java:${apiVersion}")
+//    implementation("no.fint:fint-utdanning-model-java:${apiVersion}")
+//    implementation("no.fint:fint-administrasjon-model-java:${apiVersion}")
+//    implementation("no.fint:fint-personvern-model-java:${apiVersion}")
+//    implementation("no.fint:fint-okonomi-model-java:${apiVersion}")
 
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:15.0.0'
     implementation 'com.graphql-java:graphql-java:21.3'
