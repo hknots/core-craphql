@@ -4,6 +4,8 @@ import lombok.Data;
 import no.fintlabs.coregraphql.reflection.ReflectionService;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ public abstract class FintObject {
     private final String domainName;
     private final String uniqueName;
     private final List<Field> fields;
-    private final List<String> relations;
+    private final List<FintRelation> relations;
 
     public FintObject(Class<?> clazz, ReflectionService reflectionService) {
         this.clazz = clazz;
@@ -42,20 +44,30 @@ public abstract class FintObject {
         }
     }
 
-    private List<String> getAllRelations(Class<?> clazz) {
-        List<String> relations = new ArrayList<>();
+    private List<FintRelation> getAllRelations(Class<?> clazz) {
+        List<FintRelation> relations = new ArrayList<>();
         Class<?>[] declaredClasses = clazz.getDeclaredClasses();
 
         for (Class<?> innerClass : declaredClasses) {
             if (innerClass.isEnum()) {
                 Object[] enumConstants = innerClass.getEnumConstants();
                 for (Object enumConstant : enumConstants) {
-                    relations.add(enumConstant.toString());
+                    try {
+                        Method getTypeNameMethod = innerClass.getMethod("getTypeName");
+                        Method getMultiplicityMethod = innerClass.getMethod("getMultiplicity");
+
+                        String typeName = (String) getTypeNameMethod.invoke(enumConstant);
+                        String multiplicity = (String) getMultiplicityMethod.invoke(enumConstant);
+                        relations.add(new FintRelation(enumConstant.toString(), typeName, multiplicity));
+                    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }
         return relations;
     }
+
 
     private List<Field> getAllFields(Class<?> clazz) {
         List<Field> fields = new ArrayList<>();
