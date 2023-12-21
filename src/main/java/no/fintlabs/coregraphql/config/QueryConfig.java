@@ -66,15 +66,9 @@ public class QueryConfig {
             return processedTypes.get(packageName);
         }
 
-        // Create a placeholder type and store it in the registry to handle circular references
-        GraphQLObjectType placeholderType = GraphQLObjectType.newObject()
-                .name(fintObject.getUniqueName() + "_placeholder")
-                .build();
-
-        processedTypes.put(packageName, placeholderType);
-        GraphQLObjectType actualType = createObjectType(fintObject);
-        processedTypes.put(packageName, actualType);
-        return actualType;
+        GraphQLObjectType objectType = createObjectType(fintObject);
+        processedTypes.put(packageName, objectType);
+        return objectType;
     }
 
     private GraphQLObjectType createObjectType(FintObject fintObject) {
@@ -110,8 +104,8 @@ public class QueryConfig {
     private FintObject findRelatedFintObject(String packageName) {
         if (reflectionService.getFintMainObjects().containsKey(packageName)) {
             return reflectionService.getFintMainObjects().get(packageName);
-        } else if (reflectionService.getFintComplexObjects().containsKey(packageName)) {
-            return reflectionService.getFintComplexObjects().get(packageName);
+        } else if (reflectionService.getAllFintObjects().containsKey(packageName)) {
+            return reflectionService.getAllFintObjects().get(packageName);
         }
         throw new RuntimeException("FintObject with package name '" + packageName + "' not found");
     }
