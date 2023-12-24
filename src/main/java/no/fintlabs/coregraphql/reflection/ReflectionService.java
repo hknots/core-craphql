@@ -31,6 +31,7 @@ public class ReflectionService {
         return reflections
                 .getSubTypesOf(no.fint.model.FintObject.class)
                 .stream()
+                .filter(clazz -> !fintMainObjects.containsKey(clazz.getName()))
                 .collect(Collectors.toMap(Class::getName, clazz -> new FintObject(clazz, this) {
                 }));
 

@@ -104,8 +104,8 @@ public class QueryConfig {
     private FintObject findRelatedFintObject(String packageName) {
         if (reflectionService.getFintMainObjects().containsKey(packageName)) {
             return reflectionService.getFintMainObjects().get(packageName);
-        } else if (reflectionService.getAllFintObjects().containsKey(packageName)) {
-            return reflectionService.getAllFintObjects().get(packageName);
+        } else if (reflectionService.getOtherFintObjects().containsKey(packageName)) {
+            return reflectionService.getOtherFintObjects().get(packageName);
         }
         throw new RuntimeException("FintObject with package name '" + packageName + "' not found");
     }
