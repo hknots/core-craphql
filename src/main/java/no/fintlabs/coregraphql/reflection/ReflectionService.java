@@ -17,17 +17,18 @@ import java.util.stream.Collectors;
 public class ReflectionService {
 
     private final Map<String, FintMainObject> fintMainObjects;
-    private final Map<String, FintObject> allFintObjects;
+    private final Map<String, FintObject> otherFintObjects;
     private final Map<String, Integer> simpleNameCounts = new HashMap<>();
 
     public ReflectionService() {
-        gatherSimpleNameCounts();
-        fintMainObjects = createFintMainObjects();
-        allFintObjects = createFintObjects();
+        Reflections reflections = new Reflections("no.fint.model");
+        gatherSimpleNameCounts(reflections);
+        fintMainObjects = createFintMainObjects(reflections);
+        otherFintObjects = createOtherFintObjects(reflections);
     }
 
-    private Map<String, FintObject> createFintObjects() {
-        return new Reflections("no.fint.model")
+    private Map<String, FintObject> createOtherFintObjects(Reflections reflections) {
+        return reflections
                 .getSubTypesOf(no.fint.model.FintObject.class)
                 .stream()
                 .collect(Collectors.toMap(Class::getName, clazz -> new FintObject(clazz, this) {
@@ -35,8 +36,8 @@ public class ReflectionService {
 
     }
 
-    private void gatherSimpleNameCounts() {
-        new Reflections("no.fint.model")
+    private void gatherSimpleNameCounts(Reflections reflections) {
+        reflections
                 .getSubTypesOf(no.fint.model.FintObject.class)
                 .forEach(clazz -> {
                     String simpleName = clazz.getSimpleName();
@@ -48,8 +49,8 @@ public class ReflectionService {
         return simpleNameCounts.getOrDefault(simpleName, 0);
     }
 
-    private Map<String, FintMainObject> createFintMainObjects() {
-        return new Reflections("no.fint.model")
+    private Map<String, FintMainObject> createFintMainObjects(Reflections reflections) {
+        return reflections
                 .getSubTypesOf(no.fint.model.FintMainObject.class)
                 .stream()
                 .collect(Collectors.toMap(
