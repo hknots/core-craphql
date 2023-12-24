@@ -76,15 +76,6 @@ public class QueryConfig {
         GraphQLObjectType.Builder objectBuilder = GraphQLObjectType.newObject()
                 .name(fintObject.getUniqueName());
 
-        for (FintRelation relation : fintObject.getRelations()) {
-            log.info("Relation: {}", relation.packageName());
-            FintObject relatedObject = findRelatedFintObject(relation.packageName());
-            objectBuilder.field(GraphQLFieldDefinition.newFieldDefinition()
-                    .name(relation.relationName())
-                    .type(getOrCreateObjectType(relatedObject))
-                    .build());
-        }
-
         fintObject.getFields().forEach(field -> {
             GraphQLFieldDefinition.Builder fieldBuilder = GraphQLFieldDefinition.newFieldDefinition()
                     .name(field.getName());
@@ -96,9 +87,7 @@ public class QueryConfig {
             }
         });
 
-        GraphQLObjectType builtType = objectBuilder.build();
-        processedTypes.put(fintObject.getPackageName(), builtType);
-        return builtType;
+        return objectBuilder.build();
     }
 
     private FintObject findRelatedFintObject(String packageName) {
